@@ -1,182 +1,66 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Startsimple</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      /* Fundo em degradê */
-      background: linear-gradient(180deg, #1e90ff, #87cefa);
-      min-height: 100vh;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StartSimple</title>
+    <style>
+               body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, pink 0%, blue 100%);
 
-    /* Topo */
-    .header {
-      color: #fff;
-      padding: 15px;
-      text-align: center;
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    /* Caixa de pesquisa */
-    .search-box {
-      margin: 15px;
-      display: flex;
-      align-items: center;
-      background: #fff;
-      border-radius: 12px;
-      padding: 10px;
-      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .search-box input {
-      border: none;
-      outline: none;
-      flex: 1;
-      font-size: 16px;
-      margin-left: 10px;
-    }
-
-    /* Sugestões */
-    .sugestoes {
-      margin: 0 15px;
-      display: flex;
-      gap: 10px;
-    }
-
-    .sugestoes button {
-      flex: 1;
-      padding: 10px;
-      border: none;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      color: #fff;
-    }
-
-    .sugestoes .dinheiro { background: #f7931a; }
-    .sugestoes .casa { background: #7c4dff; }
-    .sugestoes .investir { background: #00acc1; }
-
-    /* Feed */
-    .feed {
-      margin: 20px 15px;
-    }
-
-    .feed h2 {
-      font-size: 18px;
-      margin-bottom: 15px;
-      color: #fff;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 15px;
-      box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
-    }
-
-    .card img {
-      width: 60px;
-      float: left;
-      margin-right: 15px;
-    }
-
-    .card h3 {
-      font-size: 16px;
-      margin: 0;
-      margin-bottom: 8px;
-    }
-
-    .card ol {
-      padding-left: 20px;
-      margin: 10px 0;
-    }
-
-    .card .actions {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;
-    }
-
-    .card .actions button {
-      border: none;
-      padding: 8px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .salvar {
-      background: transparent;
-      border: 1px solid #1e90ff;
-      color: #1e90ff;
-    }
-
-    .ver {
-      background: #1e90ff;
-      color: #fff;
-    }
-
-    /* Barra inferior */
-    .bottom-banner {
-      background: #ffd600;
-      padding: 15px;
-      text-align: center;
-      font-weight: bold;
-      border-radius: 10px;
-      margin: 0 15px 30px;
-      cursor: pointer;
-    }
-
-  </style>
+        } 
+        #ideias_investimento{
+            background-color: white;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+            box-shadow: 0 4px #999;
+        }   
+        a{
+            text-decoration: none;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: black;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            color: yellow; 
+            text-shadow: black; font-family: Arial, Helvetica, sans-serif; 
+            font-weight: bold; font-style: normal; 
+            text-decoration: #999;
+            -webkit-text-stroke: 1px greenyellow; /* 2 pixels de largura, cor preta */
+        }
+    </style>
 </head>
 <body>
-
-  <div class="header">startsimple</div>
-
-  <!-- Caixa de pesquisa -->
-  <div class="search-box">
-    <span>💬</span>
-    <input type="text" placeholder="O que você quer fazer?">
-  </div>
-
-  <!-- Botões de sugestões -->
-  <div class="sugestoes">
-    <button class="dinheiro">Ganhar dinheiro</button>
-    <button class="casa">Trabalhar de casa</button>
-    <button class="investir">Investir com pouco</button>
-  </div>
-
-  <!-- Feed de ideias -->
-  <div class="feed">
-    <h2>Feed de Ideias</h2>
-
-    <div class="card">
-      <img src="https://img.icons8.com/color/96/strawberry.png" alt="Morango">
-      <h3>Morango do Amor: Comece com R$30</h3>
-      <ol>
-        <li>Compre morangos, chocolate</li>
-        <li>Faça morangos no palito</li>
-        <li>Publique em grupos da região</li>
-        <li>Separe as entregas no app</li>
-      </ol>
-      <div class="actions">
-        <button class="salvar">Salvar</button>
-        <button class="ver">Ver similares</button>
-      </div>
+    <div>
+        <button id ="ideias_investimento" class=" d-flex justify-content-center align-items-center"> 
+            <a  href="ideias_de_investimento.html">Ideias de Investimento</a>
+        </button>
+        <button id ="ideias_investimento" class=" d-flex justify-content-center align-items-center"> 
+            <a  href="ideias_de_investimento.html">Ideias de Investimento</a>
+        </button>
+        <button id ="ideias_investimento" class=" d-flex justify-content-center align-items-center"> 
+            <a  href="ideias_de_investimento.html">Ideias de Investimento</a>
+        </button>
+        <button id ="ideias_investimento" class=" d-flex justify-content-center align-items-center"> 
+            <a  href="ideias_de_investimento.html">Ideias de Investimento</a>
+        </button>
+        <button id ="ideias_investimento" class=" d-flex justify-content-center align-items-center"> 
+            <a  href="ideias_de_investimento.html">Ideias de Investimento</a>
+        </button>
+        
     </div>
-  </div>
-
-  <!-- Banner inferior -->
-  <div class="bottom-banner">
-    Ganhar dinheiro com comida →
-  </div>
-
+    
 </body>
 </html>
