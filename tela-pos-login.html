@@ -64,11 +64,36 @@
             text-decoration: #999;
             -webkit-text-stroke: 1px black; /* 2 pixels de largura, cor preta */
         }
+        #sidebar {
+            width: 250px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 20px;
+        }
+        #perfil {
+            color: white; 
+            text-shadow: black; font-family: Arial, Helvetica, sans-serif; 
+            font-weight: bold; font-style: normal; 
+            text-decoration: #999;
+            font-size: 24px;
+            -webkit-text-stroke: 1px black; /* 2 pixels de largura, cor preta */
+        }
     </style>
 </head>
 <body>
     <div>
         <h1>Em qual ramo você deseja seguir?</h1>
+    </div>
+    <div id="sidebar" class="sidebar">
+        <p id="perfil">Perfil</p>
+        <img src="erasebg-transformed.png" alt="">
     </div>
     <div class="card">
         <button id ="ideias_investimento" class=" d-flex justify-content-center align-items-center"> 
