@@ -1,19 +1,33 @@
 <!DOCTYPE html>
-<html lang="pt-br>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StartSimple</title>
     <style>
-               body, html {
+        body, html {
             height: 100%;
             margin: 0;
             font-family: Arial, sans-serif;
             background: linear-gradient(to right, pink 0%, blue 100%);
 
         } 
+        .card {
+            background: linear-gradient(180deg, #ffffff 0%, #FFF8F0 100%);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            padding: 24px;
+            max-width: 820px;
+            width: calc(100% - 40px);
+            margin: 32px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+            align-items: center;
+        }
         #ideias_investimento{
-            background-color: white;
+            background: linear-gradient(90deg,#6C5CE7 0%, #FF7675 100%); /* roxo -> salmão */
             border: none;
             color: white;
             padding: 15px 32px;
@@ -27,6 +41,7 @@
             box-shadow: 0 4px #999;
         }   
         a{
+            
             text-decoration: none;
             color: white;
             font-size: 1.5em;
@@ -34,32 +49,49 @@
             color: black;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             border-radius: 20px;
-            color: yellow; 
+            color: white; 
             text-shadow: black; font-family: Arial, Helvetica, sans-serif; 
             font-weight: bold; font-style: normal; 
             text-decoration: #999;
-            -webkit-text-stroke: 1px greenyellow; /* 2 pixels de largura, cor preta */
+            -webkit-text-stroke: 1px black; /* 2 pixels de largura, cor preta */
+        }
+        h1{
+            display: flex;
+            justify-content: center;
+            color: white; 
+            text-shadow: black; font-family: Arial, Helvetica, sans-serif; 
+            font-weight: bold; font-style: normal; 
+            text-decoration: #999;
+            -webkit-text-stroke: 1px black; /* 2 pixels de largura, cor preta */
         }
     </style>
 </head>
 <body>
     <div>
+        <h1>Em qual ramo você deseja seguir?</h1>
+    </div>
+    <div class="card">
         <button id ="ideias_investimento" class=" d-flex justify-content-center align-items-center"> 
-            <a  href="ideias_de_investimento.html">Ideias de Investimento</a>
+            <a  href="ideias_de_investimento.html">Culinária</a>
         </button>
         <button id ="ideias_investimento" class=" d-flex justify-content-center align-items-center"> 
-            <a  href="ideias_de_investimento.html">Ideias de Investimento</a>
+            <a  href="ideias_de_investimento.html">Meio Ambiente</a>
         </button>
         <button id ="ideias_investimento" class=" d-flex justify-content-center align-items-center"> 
-            <a  href="ideias_de_investimento.html">Ideias de Investimento</a>
+            <a  href="ideias_de_investimento.html">Tecnologia</a>
         </button>
         <button id ="ideias_investimento" class=" d-flex justify-content-center align-items-center"> 
-            <a  href="ideias_de_investimento.html">Ideias de Investimento</a>
+            <a  href="ideias_de_investimento.html">Comércio</a>
         </button>
         <button id ="ideias_investimento" class=" d-flex justify-content-center align-items-center"> 
-            <a  href="ideias_de_investimento.html">Ideias de Investimento</a>
+            <a  href="ideias_de_investimento.html">Artesanato</a>
         </button>
-        
+        <button id="ideias_investimento" class=" d-flex justify-content-center align-items-center"> 
+            <a  href="ideias_de_investimento.html">Serviços</a>
+        </button>
+        <button id="ideias_investimento" class=" d-flex justify-content-center align-items-center"> 
+            <a  href="ideias_de_investimento.html">Educação</a>
+        </button>
     </div>
     
 </body>
