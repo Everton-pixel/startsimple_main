@@ -16,8 +16,11 @@
       height: 100%;
       margin: 0;
       font-family: Arial, sans-serif;
-      background: whitesmoke;
+      background: linear-gradient(135deg, #FDEFF9 0%, #E6F7FF 100%);
       display: flex;
+      justify-content: center;  /* centraliza horizontalmente */
+      align-items: center;      /* centraliza verticalmente */
+      min-height: 100vh;        /* garante altura mínima */
     }
 
     /* SIDEBAR NOVA */
@@ -63,19 +66,24 @@
     /* CONTEÚDO */
     .main-content {
       flex: 1;
-      margin-left: 100px; /* espaço pro menu lateral */
+      margin-left: 100px;
       padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;     /* centraliza horizontalmente */
+      justify-content: center; /* centraliza verticalmente */
+      min-height: 100vh;
+      width: calc(100% - 100px); /* considera a largura menos a sidebar */
     }
 
     /* SEU ESTILO ANTIGO (mantido) */
     .card {
       background: linear-gradient(180deg, #ffffff 0%, #FFF8F0 100%);
       border-radius: 16px;
-      box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
       padding: 24px;
       max-width: 820px;
-      width: calc(100% - 40px);
-      margin: 32px auto;
+      width: 90%;
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
@@ -108,10 +116,11 @@
     }
 
     h1 {
-      display: flex;
-      justify-content: center;
-      color: white;
-      -webkit-text-stroke: 1px black;
+      width: 100%;
+      text-align: center;
+      color: #222;
+      -webkit-text-stroke: 0.6px rgba(0,0,0,0.12);
+      margin: 18px 0;
     }
   </style>
 </head>
