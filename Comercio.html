@@ -18,12 +18,12 @@
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #FDEFF9 0%, #E6F7FF 100%);
       display: flex;
-      justify-content: center;  /* centraliza horizontalmente */
-      align-items: center;      /* centraliza verticalmente */
-      min-height: 100vh;        /* garante altura mínima */
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
 
-    /* SIDEBAR NOVA */
+    /* SIDEBAR */
     .sidebar {
       width: 90px;
       height: 100vh;
@@ -70,13 +70,12 @@
       padding: 20px;
       display: flex;
       flex-direction: column;
-      align-items: center;     /* centraliza horizontalmente */
-      justify-content: center; /* centraliza verticalmente */
+      align-items: center;
+      justify-content: center;
       min-height: 100vh;
-      width: calc(100% - 100px); /* considera a largura menos a sidebar */
+      width: calc(100% - 100px);
     }
 
-    /* SEU ESTILO ANTIGO (mantido) */
     .card {
       background: linear-gradient(180deg, #ffffff 0%, #FFF8F0 100%);
       border-radius: 16px;
@@ -89,38 +88,75 @@
       gap: 14px;
       justify-content: center;
       align-items: center;
+      animation: fadeIn 0.4s ease;
     }
 
-    a {
+    .card button {
       background: linear-gradient(90deg, #6C5CE7 0%, #FF7675 100%);
       border: none;
       color: white;
       padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
       font-size: 16px;
-      margin: 4px 2px;
       cursor: pointer;
       border-radius: 12px;
       box-shadow: 0 4px #999;
+      transition: 0.3s;
     }
 
-    a {
-      text-decoration: none;
-      color: white;
-      font-size: 1.5em;
-      font-weight: bold;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      -webkit-text-stroke: 1px black;
+    .card button:hover {
+      background-color: #6a0dad;
     }
 
     h1 {
       width: 100%;
       text-align: center;
       color: #222;
-      -webkit-text-stroke: 0.6px rgba(0,0,0,0.12);
       margin: 18px 0;
+    }
+
+    /* =========================
+       CARD SOBREPOSTO (OVERLAY)
+    ========================== */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none; /* começa invisível */
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .overlay.active {
+      display: flex; /* mostra o overlay */
+      animation: fadeIn 0.3s ease;
+    }
+
+    .overlay .card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+      width: 400px;
+      padding: 24px;
+      text-align: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .overlay input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    @keyframes fadeIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
@@ -138,21 +174,26 @@
 
   <!-- CONTEÚDO -->
   <div class="main-content" id="conteudo">
-    <h1>Em qual ramo você deseja seguir?</h1>
-
+    <h1>Investimentos em Culinária</h1>
     <div class="card">
-        <a href="comunidade_culinaria.html">Culinária</a>
-        <a href="Entretenimento.html">Entretenimento</a>
-        <a href="Tecnologia.html">Tecnologia</a>
-        <a href="Comercio.html">Comércio</a>
-        <a href="Arte.html">Arte</a>
-        <a href="Servicos.html">Serviços</a>
-        <a href="Educacao.html">Educação</a>
+        <button id="Anotar_ideias">Anotar suas ideias</button>
+        <button id="interação">Comunidade</button>
+        <button id="point_sell">Pontos de venda</button>
+        <button id="dicas">Dicas para começar</button>
+    </div>
+  </div> 
+
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay">
+    <div class="card">
+        <h3>Digite suas ideias de Investimentos</h3>
+        <input type="text" placeholder="Escreva aqui...">
+        <button id="fecharCard">Fechar</button>
     </div>
   </div>
 
   <script>
-    // Deixa os ícones funcionais
+    // Ícones laterais
     const icons = document.querySelectorAll(".nav-icon");
     const conteudo = document.getElementById("conteudo");
 
@@ -167,6 +208,19 @@
           <p style="text-align:center;">Você está na seção: <strong>${titulo}</strong>.</p>
         `;
       });
+    });
+
+    // Card (overlay)
+    const Anotar_ideias = document.getElementById('Anotar_ideias');
+    const fecharCard = document.getElementById('fecharCard');
+    const overlay = document.getElementById('overlay');
+
+    Anotar_ideias.addEventListener('click', () => {
+      overlay.classList.add('active');
+    });
+
+    fecharCard.addEventListener('click', () => {
+      overlay.classList.remove('active');
     });
   </script>
 </body>
