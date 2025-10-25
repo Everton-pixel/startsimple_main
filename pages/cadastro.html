@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StartSimple</title>
     <style>
-        body,html{
+        body, html {
             height: 100%;
             margin: 0;
             font-family: Arial, sans-serif;
-            background: whitesmoke;
+            background-color: whitesmoke;
         }
-        #login {
+        #cadastro {
             margin-top: -20em;
             height: 100vh;
             width: 100vw;
@@ -56,21 +56,7 @@
             border: 1px solid #ccc;
             width: 300px;
         }
-        #logo
-        {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 500px;
-            height: auto;
-            margin-top: 1em;
-            filter: 
-            drop-shadow(2px 2px 0 #fff)
-            drop-shadow(-2px 2px 0 #fff)
-            drop-shadow(2px -2px 0 #fff)
-            drop-shadow(-2px -2px 0 #fff);  
-        }
-        #cadastro{
+        #voltarlogin{
             background-color: white;
             border: none;
             color: black;
@@ -102,28 +88,53 @@
             box-shadow: 0 4px #999;
             justify-content: center;
             align-items: center;
-        }    
+        }
+        #logo
+        {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 500px;
+            height: auto;
+            margin-top: 0.25em;
+            filter: 
+            drop-shadow(2px 2px 0 #fff)
+            drop-shadow(-2px 2px 0 #fff)
+            drop-shadow(2px -2px 0 #fff)
+            drop-shadow(-2px -2px 0 #fff);  
+            filter: 
+            drop-shadow(2px 2px 0 #fff)
+            drop-shadow(-2px 2px 0 #fff)
+            drop-shadow(2px -2px 0 #fff)
+            drop-shadow(-2px -2px 0 #fff);  
+        
+        }
     </style>
 </head>
 <body>
     <div>
-        <img id="logo" src="erased_logo.png" alt="">
+        <img id="logo" src="..\assets\img\erased_logo.png" alt="">
     </div>
-    <div id="login">
-            <form action="login.php" method="post" id="loginForm">
+    <div id="cadastro">
+            <form action="cadastro.php" method="post" id="cadastroForm">
                 <input id="email" type="email" name="email" placeholder="Email" required><br>
                 <input id="password" type="password" name="senha" placeholder="Senha" required><br>
-                <a id="enviarbotao" href="tela-pos-login.html">Entrar</a>
-                <a id="cadastro" href="cadastro.html">Não possui conta? Cadastre-se</a>
+                <a id="enviarbotao" href="#" onclick="submitForm(event)">Cadastrar</a>
+                <a id="voltarlogin" href="login.html">Fazer Login</a>
                 <a id="Voltar" href="index.html">Voltar</a>
             </form>
     </div>
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Aqui você pode adicionar a lógica de validação do login
-            window.location.href = 'tela-pos-login.html';
-        });
+        function submitForm(event) {
+            event.preventDefault();
+            const form = document.getElementById('cadastroForm');
+            if (form.checkValidity()) {
+                // Aqui você pode adicionar a lógica de validação do cadastro
+                window.location.href = 'login.html';
+            } else {
+                form.reportValidity();
+            }
+        }
     </script>
-</body> 
+</body>  
 </html>
