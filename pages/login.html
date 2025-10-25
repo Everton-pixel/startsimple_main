@@ -57,11 +57,18 @@
                            class="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-lg placeholder-white/80 text-white focus:ring-2 focus:ring-white focus:border-white/50 transition duration-300 shadow-inner"
                            style="outline: none;">
                 </div>
-                <div>
+                
+                <div class="relative">
                     <label for="password" class="sr-only">Senha</label>
                     <input type="password" id="password" placeholder="Senha" required
-                           class="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-lg placeholder-white/80 text-white focus:ring-2 focus:ring-white focus:border-white/50 transition duration-300 shadow-inner"
+                           class="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-lg placeholder-white/80 text-white focus:ring-2 focus:ring-white focus:border-white/50 transition duration-300 shadow-inner pr-12"
                            style="outline: none;">
+                    
+                    <button type="button" id="togglePassword" 
+                            class="absolute inset-y-0 right-0 flex items-center pr-3 text-white/70 hover:text-white transition duration-200"
+                            aria-label="Mostrar ou ocultar senha">
+                        <i data-lucide="eye" id="eyeIcon" class="w-5 h-5"></i>
+                    </button>
                 </div>
                 
                 <button type="submit" 
@@ -73,7 +80,7 @@
             <div class="mt-6 text-sm">
                 <p class="text-slate-200">
                     Ainda não tem conta? 
-                    <a href="cadastro.html" class="text-white font-bold hover:underline transition duration-300">Cadastre-se aqui</a>
+                    <a href="#" class="text-white font-bold hover:underline transition duration-300">Cadastre-se aqui</a>
                 </p>
             </div>
         </div>
@@ -81,6 +88,24 @@
 
     <script>
         lucide.createIcons();
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+
+                if (type === 'text') {
+                  togglePassword.innerHTML = '<i data-lucide="eye-off" class="w-5 h-5"></i>';
+                } else {
+                 togglePassword.innerHTML = '<i data-lucide="eye" class="w-5 h-5"></i>';
+                }
+                lucide.createIcons();
+            });
+        });
     </script>
 </body>
 </html>
