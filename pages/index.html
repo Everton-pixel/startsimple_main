@@ -11,8 +11,8 @@
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(to right bottom, #a3557c, #0e3bc2);
-            background-attachment: fixed; /* Garante que o gradiente preencha toda a altura */
-            color: #E2E8F0; /* Cor de texto mais clara para o fundo escuro */
+            background-attachment: fixed; 
+            color: #E2E8F0; 
             line-height: 1.6;
         }
         h1, h3 {
@@ -26,36 +26,36 @@
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
         .cta-button:hover {
-            transform: translateY(-2px);
+            transform: translateY(-1px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
         .logo-shadow {
             filter: 
-                drop-shadow(2px 2px 0 rgba(255, 255, 255, 0.8))
-                drop-shadow(-2px 2px 0 rgba(255, 255, 255, 0.8))
-                drop-shadow(2px -2px 0 rgba(255, 255, 255, 0.8))
-                drop-shadow(-2px -2px 0 rgba(255, 255, 255, 0.8));
+                drop-shadow(1px 1px 0 rgba(255, 255, 255, 0.8))
+                drop-shadow(-1px 1px 0 rgba(255, 255, 255, 0.8))
+                drop-shadow(1px -1px 0 rgba(255, 255, 255, 0.8))
+                drop-shadow(-1px -1px 0 rgba(255, 255, 255, 0.8));
         }
         .glass-card {
-            background: rgba(255, 255, 255, 0.15); /* Mais transparente */
-            backdrop-filter: blur(15px); /* Efeito de blur mais forte */
-            border: 1px solid rgba(255, 255, 255, 0.25); /* Borda mais sutil */
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada */
-            border-radius: 1.5rem; /* Bordas mais arredondadas */
+            background: rgba(255, 255, 255, 0.15); 
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.25); 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            border-radius: 1.5rem; 
         }
         .feature-item {
-            color: #E2E8F0; /* Cor de texto para os itens de feature */
+            color: #E2E8F0; 
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
         .feature-item .lucide {
-            color: #8B5CF6; /* Ícones em um tom de roxo/magenta vibrante */
+            color: #8B5CF6;
         }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
 
     <header class="py-2 px-4 bg-white/10 backdrop-blur-md shadow-lg sticky top-0 z-10">
-        <div class="max-w-4xl mx-auto flex items-center justify-start">
+        <div class="mx-auto flex items-center justify-start">
             <img src="..\assets\img\erased_logo.png" alt="StartSimples Logo" class="h-24 sm:h-26 w-auto logo-shadow">
         </div>
     </header>
@@ -69,7 +69,6 @@
                 Transforme suas ideias em ação. Sem burocracia, sem metas de renda — apenas o primeiro passo.
             </p>
             
-            <!-- Link atualizado para login.html -->
             <a href="login.html" class="cta-button inline-flex items-center justify-center bg-white text-blue-800 font-extrabold py-3 px-10 rounded-full shadow-lg text-lg">
                 Dê o Primeiro Passo Agora
                 <i data-lucide="arrow-right" class="w-6 h-6 ml-3"></i>
