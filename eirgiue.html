@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StartSimple - Seções Dinâmicas</title>
+
+  <!-- Ícones Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #FDEFF9 0%, #E6F7FF 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 90px;
+      height: 100vh;
+      background: linear-gradient(to bottom, #fef2ff, #f7d6ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      left: 0;
+      top: 0;
+    }
+
+    .logo {
+      width: 60%;
+      margin-bottom: 40px;
+    }
+
+    .nav-icon {
+      color: #a043ff;
+      font-size: 26px;
+      margin: 22px 0;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .nav-icon:hover {
+      color: #7c2ae8;
+      transform: scale(1.2);
+    }
+
+    .nav-icon.active {
+      color: #fff;
+      background: #a043ff;
+      border-radius: 15px;
+      padding: 10px;
+    }
+
+    /* CONTEÚDO PRINCIPAL */
+    .main-content {
+      flex: 1;
+      margin-left: 100px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      width: calc(100% - 100px);
+    }
+
+    .section {
+      display: none;
+      width: 100%;
+      max-width: 800px;
+      text-align: center;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      padding: 30px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .section h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    /* Botões */
+    button {
+      background: linear-gradient(90deg, #6C5CE7 0%, #FF7675 100%);
+      border: none;
+      color: white;
+      padding: 12px 28px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 12px;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      opacity: 0.85;
+    }
+
+    /* OVERLAY */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .overlay.active {
+      display: flex;
+    }
+
+    .overlay .card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+      width: 400px;
+      padding: 24px;
+      text-align: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .overlay input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    @keyframes fadeIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <img src="../assets/img/erased_logo.png" alt="StartSimple" class="logo" />
+    <i class="fa-solid fa-house nav-icon active" id="home" title="Início"></i>
+    <i class="fa-solid fa-user nav-icon" id="perfil" title="Perfil"></i>
+    <i class="fa-solid fa-heart nav-icon" id="favoritos" title="Favoritos"></i>
+    <i class="fa-solid fa-bell nav-icon" id="notificacoes" title="Notificações"></i>
+    <i class="fa-solid fa-gear nav-icon" id="configuracoes" title="Configurações"></i>
+  </div>
+
+  <!-- CONTEÚDO -->
+  <div class="main-content" id="conteudo">
+    <!-- SEÇÃO: HOME -->
+    <div class="section active" id="home-section">
+      <h1>Início</h1>
+      <p>Bem-vindo à plataforma StartSimple!</p>
+      <button id="Anotar_ideias">Anotar suas ideias</button>
+    </div>
+
+    <!-- SEÇÃO: PERFIL -->
+    <div class="section" id="perfil-section">
+      <h1>Perfil</h1>
+      <p>Gerencie suas informações pessoais e preferências.</p>
+    </div>
+
+    <!-- SEÇÃO: FAVORITOS -->
+    <div class="section" id="favoritos-section">
+      <h1>Favoritos</h1>
+      <p>Veja seus conteúdos e receitas salvas.</p>
+    </div>
+
+    <!-- SEÇÃO: NOTIFICAÇÕES -->
+    <div class="section" id="notificacoes-section">
+      <h1>Notificações</h1>
+      <p>Veja suas últimas atualizações e alertas.</p>
+    </div>
+
+    <!-- SEÇÃO: CONFIGURAÇÕES -->
+    <div class="section" id="config-section">
+      <h1>Configurações</h1>
+      <p>Personalize o aplicativo conforme suas preferências.</p>
+    </div>
+  </div>
+
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay">
+    <div class="card">
+        <h3>Digite suas ideias de Investimentos</h3>
+        <input type="text" placeholder="Escreva aqui...">
+        <button id="fecharCard">Fechar</button>
+    </div>
+  </div>
+
+  <script>
+    // ===========================
+    //   TROCA DE SEÇÕES
+    // ===========================
+    const icons = document.querySelectorAll(".nav-icon")
+    const sections = document.querySelectorAll(".section")
+
+    const sectionMap = {
+      home: "home-section",
+      perfil: "perfil-section",
+      favoritos: "favoritos-section",
+      notificacoes: "notificacoes-section",
+      configuracoes: "config-section"
+    }
+
+    function esconderTodas() {
+      sections.forEach(sec => sec.classList.remove("active"))
+    }
+
+    icons.forEach(icon => {
+      icon.addEventListener("click", () => {
+        icons.forEach(i => i.classList.remove("active"))
+        icon.classList.add("active")
+
+        const id = icon.id
+        const sectionId = sectionMap[id]
+
+        esconderTodas()
+        const target = document.getElementById(sectionId)
+        if (target) target.classList.add("active")
+      })
+    })
+
+    // ===========================
+    //   OVERLAY (CARD)
+    // ===========================
+    const Anotar_ideias = document.getElementById('Anotar_ideias')
+    const fecharCard = document.getElementById('fecharCard')
+    const overlay = document.getElementById('overlay')
+
+    Anotar_ideias.addEventListener('click', () => {
+      overlay.classList.add('active')
+    })
+
+    fecharCard.addEventListener('click', () => {
+      overlay.classList.remove('active')
+    })
+  </script>
+</body>
+</html>
