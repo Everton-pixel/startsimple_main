@@ -165,7 +165,7 @@
   <!-- SIDEBAR -->
   <div class="sidebar">
     <img src="..\assets\img\erased_logo.png" alt="StartSimple" class="logo" />
-    <i class="fa-solid fa-house nav-icon active" title="Início"></i>
+    <i class="fa-solid fa-house nav-icon active" title="Início" id="home"></i>
     <i class="fa-solid fa-user nav-icon" title="Perfil"></i>
     <i class="fa-solid fa-heart nav-icon" title="Favoritos"></i>
     <i class="fa-solid fa-bell nav-icon" title="Notificações"></i>
@@ -201,7 +201,7 @@
         icons.forEach(i => i.classList.remove("active"));
         icon.classList.add("active");
 
-        const titulo = icon.getAttribute("title");
+        const titulo = icon.getAttribute("home");
         conteudo.innerHTML = `
           <h1>${titulo}</h1>
           <p style="text-align:center;">Você está na seção: <strong>${titulo}</strong>.</p>

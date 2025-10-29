@@ -165,7 +165,7 @@
   <!-- SIDEBAR -->
   <div class="sidebar">
     <img src="..\assets\img\erased_logo.png" alt="StartSimple" class="logo" />
-    <i class="fa-solid fa-house nav-icon active" title="Início"></i>
+    <i class="fa-solid fa-house nav-icon active" title="Inicio"></i>
     <i class="fa-solid fa-user nav-icon" title="Perfil"></i>
     <i class="fa-solid fa-heart nav-icon" title="Favoritos"></i>
     <i class="fa-solid fa-bell nav-icon" title="Notificações"></i>
@@ -174,7 +174,7 @@
 
   <!-- CONTEÚDO -->
   <div class="main-content" id="conteudo">
-    <h1>Investimentos em Culinária</h1>
+    <h1>Trabalhando com Comércio</h1>
     <div class="card">
         <button id="Anotar_ideias">Anotar suas ideias</button>
         <button id="interação">Comunidade</button>
@@ -193,6 +193,37 @@
   </div>
 
   <script>
+    // Funções reutilizáveis para cada ação
+    const acoes = {
+      anotarIdeias: () => {
+        document.getElementById('overlay').classList.add('active');
+      },
+      comunidade: () => {
+        window.location.href = 'comunidade_culinaria.html';
+      },
+      pontosVenda: () => {
+        // Implementar visualização de pontos de venda
+        alert('Em breve: Mapa de pontos de venda!');
+      },
+      dicas: () => {
+        // Implementar seção de dicas
+        alert('Em breve: Dicas para começar!');
+      }
+    };
+
+    // Função para criar o card principal
+    function criarCardPrincipal() {
+      return `
+        <h1>Trabalhando com comércio</h1>
+        <div class="card">
+            <button onclick="acoes.anotarIdeias()" id="Anotar_ideias">Anotar suas ideias</button>
+            <button onclick="acoes.comunidade()" id="interação">Comunidade</button>
+            <button onclick="acoes.pontosVenda()" id="point_sell">Pontos de venda</button>
+            <button onclick="acoes.dicas()" id="dicas">Dicas para começar</button>
+        </div>
+      `;
+    }
+
     // Ícones laterais
     const icons = document.querySelectorAll(".nav-icon");
     const conteudo = document.getElementById("conteudo");
@@ -203,21 +234,55 @@
         icon.classList.add("active");
 
         const titulo = icon.getAttribute("title");
-        conteudo.innerHTML = `
-          <h1>${titulo}</h1>
-          <p style="text-align:center;">Você está na seção: <strong>${titulo}</strong>.</p>
-        `;
+        switch(titulo) {
+          case "Inicio":
+            conteudo.innerHTML = criarCardPrincipal();
+            break;
+          case "Favoritos":
+            conteudo.innerHTML = `
+              <h1>Minhas Ideias Favoritas</h1>
+              <div class="card">
+                <button onclick="acoes.anotarIdeias()">Nova Ideia</button>
+                <button onclick="acoes.comunidade()">Ver Comunidade</button>
+              </div>
+            `;
+            break;
+          case "Perfil":
+            conteudo.innerHTML = `
+              <h1>Meu Perfil</h1>
+              <div class="card">
+                <button onclick="acoes.anotarIdeias()">Minhas Ideias</button>
+                <button onclick="acoes.pontosVenda()">Meus Pontos</button>
+              </div>
+            `;
+            break;
+          case "Notificações":
+            conteudo.innerHTML = `
+              <h1>Minhas Notificações</h1>
+              <div class="card">
+                <button onclick="acoes.comunidade()">Ver Atualizações</button>
+                <button onclick="acoes.dicas()">Dicas Novas</button>
+              </div>
+            `;
+            break;
+          case "Configurações":
+            conteudo.innerHTML = `
+              <h1>Configurações</h1>
+              <div class="card">
+                <button onclick="acoes.anotarIdeias()">Gerenciar Ideias</button>
+                <button onclick="acoes.pontosVenda()">Configurar Localização</button>
+              </div>
+            `;
+            break;
+          default:
+            conteudo.innerHTML = `<h1>${titulo}</h1>`;
+        }
       });
     });
 
     // Card (overlay)
-    const Anotar_ideias = document.getElementById('Anotar_ideias');
     const fecharCard = document.getElementById('fecharCard');
     const overlay = document.getElementById('overlay');
-
-    Anotar_ideias.addEventListener('click', () => {
-      overlay.classList.add('active');
-    });
 
     fecharCard.addEventListener('click', () => {
       overlay.classList.remove('active');
