@@ -125,26 +125,48 @@
       
     }
     #perfilcard {
-      position: absolute;
-      top: 50%; /* faz o card aparecer acima do botão */
-      left: 120%;
-      transform: translateX(-50%) scale(0.8);
-      background: gray;
+      position: fixed;
+      top: 100px;
+      left: 100px;
+      background: white;
       padding: 16px;
       width: 220px;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.3s ease;
+      display: none;
+      z-index: 1000;
+    }
 
+    #perfilcard .perfil-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    #perfilcard .fechar-btn {
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      font-size: 18px;
+      padding: 5px;
+    }
+
+    #perfilcard .fechar-btn:hover {
+      color: #000;
+    }
+
+    #perfilcard .perfil-content p {
+      margin: 8px 0;
+      color: #333;
     }
 
     #perfilcard.active {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateX(-50%) scale(1);
-  }
+      display: block;
+    }
     /* Estilos para as seções */
     #perfil-section,
     #favoritos-section,
@@ -189,7 +211,17 @@
     <!-- Seção Perfil -->
     <div id="perfil-section">
       <div class="card" id="perfilcard">
-        <p>Detalhes do perfil do usuário</p>
+        <div class="perfil-header">
+          <h2>Perfil do Usuário</h2>
+          <button id="fecharPerfil" class="fechar-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="perfil-content">
+          <p>Nome: Usuário Exemplo</p>
+          <p>Email: usuario@exemplo.com</p>
+          <p>Membro desde: 2023</p>
+        </div>
       </div>
     </div>
 
@@ -219,46 +251,91 @@
   </div>
 
   <script>
-    const icons = document.querySelector('.nav-icon');
+    // Elementos do DOM
+    const icons = document.querySelectorAll('.nav-icon');
     const perfilCard = document.getElementById('perfilcard');
-    const perfilicon = document.getElementById('perfil-icon');
     const fecharPerfil = document.getElementById('fecharPerfil');
-    // Controle de navegação lateral: mostra/oculta seções conforme ícone clicado
+    const mainContent = document.getElementById('conteudo');
+
+    // Mapeamento de seções
     const sectionsMap = {
       'Início': 'inicio-section',
+      'Perfil': 'perfil-section',
       'Favoritos': 'favoritos-section',
       'Notificações': 'notificacoes-section',
       'Configurações': 'configuracoes-section'
+    };
+
+    // Função para esconder todas as seções
+    function hideAllSections() {
+      for (let sectionId of Object.values(sectionsMap)) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.style.display = 'none';
+        }
+      }
     }
 
-      function hideAllSections() {
-        Object.values(sectionsMap).forEach(id => {
-          const el = document.getElementById(id);
-          if (el) el.style.display = 'none';
-        });
+    // Função para mostrar uma seção específica
+    function showSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.style.display = 'block';
       }
+    }
 
-      // Estado inicial: mantém apenas a seção de início visível
-      hideAllSections();
-      const inicio = document.getElementById('inicio-section');
-      if (inicio) inicio.style.display = 'block';
+    // Estado inicial
+    hideAllSections();
+    showSection('inicio-section');
 
-      icons.forEach(icon => {
-        icon.addEventListener('click', () => {
-          // atualiza classe active
-          icons.forEach(i => i.classList.remove('active'));
-          icon.classList.add('active');
-          // esconde tudo e mostra a seção desejada
+    // Adiciona eventos aos ícones
+    icons.forEach(icon => {
+      icon.addEventListener('click', () => {
+        // Remove classe active de todos os ícones
+        icons.forEach(i => i.classList.remove('active'));
+        
+        // Adiciona classe active ao ícone clicado
+        icon.classList.add('active');
+        
+        // Obtém o título do ícone
+        const titulo = icon.getAttribute('title');
+        
+        // Se for o ícone de perfil
+        if (titulo === 'Perfil') {
+          perfilCard.classList.toggle('active');
+          // Mostra a seção de perfil
           hideAllSections();
-          const titulo = icon.getAttribute('title');
-          const targetId = sectionsMap[title];
-          if (targetId) {
-            const target = document.getElementById(targetId);
-            if (target) target.style.display = 'block';
+          showSection('perfil-section');
+        } else {
+          // Para outros ícones, esconde o card de perfil
+          perfilCard.classList.remove('active');
+          
+          // Mostra a seção correspondente
+          hideAllSections();
+          const sectionId = sectionsMap[titulo];
+          if (sectionId) {
+            showSection(sectionId);
           }
-        });
+        }
       });
-    })();
+    });
+
+    // Evento para fechar o card de perfil
+    if (fecharPerfil) {
+      fecharPerfil.addEventListener('click', () => {
+        perfilCard.classList.remove('active');
+      });
+    }
+
+    // Fechar card de perfil ao clicar fora dele
+    document.addEventListener('click', (event) => {
+      const isClickInside = perfilCard.contains(event.target);
+      const isClickOnIcon = event.target.closest('.nav-icon');
+      
+      if (!isClickInside && !isClickOnIcon && perfilCard.classList.contains('active')) {
+        perfilCard.classList.remove('active');
+      }
+    });
   </script>
 </body>
 </html>
