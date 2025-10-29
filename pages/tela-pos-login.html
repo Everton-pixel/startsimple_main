@@ -10,24 +10,24 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
-
-  <style>
+  <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
     body, html {
-      height: 100%;
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #FDEFF9 0%, #E6F7FF 100%);
-      display: flex;
-      justify-content: center;  /* centraliza horizontalmente */
-      align-items: center;      /* centraliza verticalmente */
-      min-height: 100vh;        /* garante altura mínima */
+             font-family: 'Inter', sans-serif;
+            background-attachment: fixed; 
+            color: #E2E8F0; 
+            line-height: 1.6;    /* garante altura mínima */
     }
 
     /* SIDEBAR NOVA */
     .sidebar {
       width: 90px;
       height: 100vh;
-      background: linear-gradient(to bottom, #fef2ff, #f7d6ff);
+      background: rgba(255, 255, 255, 0.15)
+      
+      ; 
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -44,7 +44,7 @@
     }
 
     .nav-icon {
-      color: #a043ff;
+      color: blue;
       font-size: 26px;
       margin: 22px 0;
       cursor: pointer;
@@ -58,7 +58,7 @@
 
     .active {
       color: #fff;
-      background: #a043ff;
+      background: blue;
       border-radius: 15px;
       padding: 10px;
     }
@@ -75,52 +75,86 @@
       min-height: 100vh;
       width: calc(100% - 100px); /* considera a largura menos a sidebar */
     }
+    
 
     /* SEU ESTILO ANTIGO (mantido) */
     .card {
-      background: linear-gradient(180deg, #ffffff 0%, #FFF8F0 100%);
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-      padding: 24px;
-      max-width: 820px;
-      width: 90%;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      justify-content: center;
-      align-items: center;
+            background: rgba(255, 255, 255, 0.15); 
+            background: linear-gradient(to right bottom, gray, lightblue, gray);
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.25); 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            border-radius: 5rem; 
+            align-items: center;
+            width: 700px;
+            height: 300px;
+            padding: 17px;
+
     }
 
     a {
-      background: linear-gradient(90deg, #6C5CE7 0%, #FF7675 100%);
       border: none;
-      color: white;
-      padding: 15px 32px;
+      background-color: white;
+      color: black !important;
+      padding: 12px 28px;
       text-align: center;
       text-decoration: none;
       display: inline-block;
       font-size: 16px;
-      margin: 4px 2px;
+      margin:45px 5px 5px;
       cursor: pointer;
       border-radius: 12px;
       box-shadow: 0 4px #999;
-    }
-
-    a {
       text-decoration: none;
-      color: white;
       font-size: 1.5em;
       font-weight: bold;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      -webkit-text-stroke: 1px black;
+    }
+    :hover{
+      background-color: #F3F4F6;
     }
 
     h1 {
-      width: 100%;
       text-align: center;
       color: #222;
       -webkit-text-stroke: 0.6px rgba(0,0,0,0.12);
       margin: 18px 0;
+      font-size: 2em !important;
+      text-shadow: 2px 2px 4px rgba(2, 2, 2, 0.5);    
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      
+    }
+    #perfilcard {
+      position: absolute;
+      top: 50%; /* faz o card aparecer acima do botão */
+      left: 120%;
+      transform: translateX(-50%) scale(0.8);
+      background: gray;
+      padding: 16px;
+      width: 220px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+
+    }
+
+    #perfilcard.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) scale(1);
+  }
+    /* Estilos para as seções */
+    #perfil-section,
+    #favoritos-section,
+    #notificacoes-section,
+    #configuracoes-section {
+      display: none;
+    }
+
+    #inicio-section {
+      display: block;
     }
   </style>
 </head>
@@ -128,7 +162,7 @@
 
   <!-- SIDEBAR -->
   <div class="sidebar">
-    <img src="..\assets\img\erased_logo.png" alt="StartSimple" class="logo" />
+  <img src="../assets/img/erased_logo.png" alt="StartSimple" class="logo" />
     <i class="fa-solid fa-house nav-icon active" title="Início"></i>
     <i class="fa-solid fa-user nav-icon" title="Perfil"></i>
     <i class="fa-solid fa-heart nav-icon" title="Favoritos"></i>
@@ -138,36 +172,93 @@
 
   <!-- CONTEÚDO -->
   <div class="main-content" id="conteudo">
-    <h1>Em qual ramo você deseja seguir?</h1>
+    <!-- Seção Início -->
+    <div id="inicio-section">
+      <h1>Em qual ramo você deseja seguir?</h1>
+      <div class="card">
+          <a href="comunidade_culinaria.html">Culinária</a>
+          <a href="Entretenimento.html">Entretenimento</a>
+          <a href="Tecnologia.html">Tecnologia</a><br>
+          <a href="Comercio.html">Comércio</a>
+          <a href="Arte.html">Arte</a>
+          <a href="Servicos.html">Serviços</a>
+          <a href="Educacao.html">Educação</a>
+      </div>
+    </div>
 
-    <div class="card">
-        <a href="comunidade_culinaria.html">Culinária</a>
-        <a href="Entretenimento.html">Entretenimento</a>
-        <a href="Tecnologia.html">Tecnologia</a>
-        <a href="Comercio.html">Comércio</a>
-        <a href="Arte.html">Arte</a>
-        <a href="Servicos.html">Serviços</a>
-        <a href="Educacao.html">Educação</a>
+    <!-- Seção Perfil -->
+    <div id="perfil-section">
+      <div class="card" id="perfilcard">
+        <p>Detalhes do perfil do usuário</p>
+      </div>
+    </div>
+
+    <!-- Seção Favoritos -->
+    <div id="favoritos-section">
+      <h1>Meus Favoritos</h1>
+      <div class="card">
+        <p>Aqui virão seus itens favoritos</p>
+      </div>
+    </div>
+
+    <!-- Seção Notificações -->
+    <div id="notificacoes-section">
+      <h1>Notificações</h1>
+      <div class="card">
+        <p>Você não tem novas notificações</p>
+      </div>
+    </div>
+
+    <!-- Seção Configurações -->
+    <div id="configuracoes-section">
+      <h1>Configurações</h1>
+      <div class="card">
+        <p>rConfigurações da conta</p>
+      </div>
     </div>
   </div>
 
   <script>
-    // Deixa os ícones funcionais
-    const icons = document.querySelectorAll(".nav-icon");
-    const conteudo = document.getElementById("conteudo");
+    const icons = document.querySelector('.nav-icon');
+    const perfilCard = document.getElementById('perfilcard');
+    const perfilicon = document.getElementById('perfil-icon');
+    const fecharPerfil = document.getElementById('fecharPerfil');
+    // Controle de navegação lateral: mostra/oculta seções conforme ícone clicado
+    const sectionsMap = {
+      'Início': 'inicio-section',
+      'Favoritos': 'favoritos-section',
+      'Notificações': 'notificacoes-section',
+      'Configurações': 'configuracoes-section'
+    }
 
-    icons.forEach(icon => {
-      icon.addEventListener("click", () => {
-        icons.forEach(i => i.classList.remove("active"));
-        icon.classList.add("active");
+      function hideAllSections() {
+        Object.values(sectionsMap).forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = 'none';
+        });
+      }
 
-        const titulo = icon.getAttribute("title");
-        conteudo.innerHTML = `
-          <h1>${titulo}</h1>
-          <p style="text-align:center;">Você está na seção: <strong>${titulo}</strong>.</p>
-        `;
+      // Estado inicial: mantém apenas a seção de início visível
+      hideAllSections();
+      const inicio = document.getElementById('inicio-section');
+      if (inicio) inicio.style.display = 'block';
+
+      icons.forEach(icon => {
+        icon.addEventListener('click', () => {
+          // atualiza classe active
+          icons.forEach(i => i.classList.remove('active'));
+          icon.classList.add('active');
+          // esconde tudo e mostra a seção desejada
+          hideAllSections();
+          const titulo = icon.getAttribute('title');
+          const targetId = sectionsMap[title];
+          if (targetId) {
+            const target = document.getElementById(targetId);
+            if (target) target.style.display = 'block';
+          }
+        });
       });
-    });
+    })();
   </script>
 </body>
 </html>
