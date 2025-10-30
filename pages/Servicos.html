@@ -82,30 +82,36 @@
     }
 
     .card {
-      background: linear-gradient(180deg, #ffffff 0%, #FFF8F0 100%);
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-      padding: 24px;
-      max-width: 820px;
-      width: 90%;
+      background: rgba(255, 255, 255, 0.15); 
+            background: linear-gradient(to right bottom, gray, lightblue, gray);
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.25); 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            border-radius: 5rem; 
+            align-items: center;
+            width: 700px;
+            height: 300px;
+            padding: 17px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      justify-content: center;
-      align-items: center;
-      animation: fadeIn 0.4s ease;
     }
 
     .card button {
-      background: linear-gradient(90deg, #6C5CE7 0%, #FF7675 100%);
       border: none;
-      color: white;
-      padding: 15px 32px;
+      background-color: white;
+      color: black !important;
+      padding: 12px 28px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
       font-size: 16px;
+      margin:45px 5px 5px;
       cursor: pointer;
       border-radius: 12px;
       box-shadow: 0 4px #999;
-      transition: 0.3s;
+      text-decoration: none;
+      font-size: 1.5em;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
 
     .card button:hover {
@@ -156,7 +162,7 @@
       background: #fff;
       border-radius: 14px;
       box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-      width: 400px;
+      width: 600px;
       padding: 24px;
       text-align: center;
       animation: fadeIn 0.3s ease;
