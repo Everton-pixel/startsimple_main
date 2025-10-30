@@ -242,6 +242,13 @@
       font-size: 16px;
     }
 
+    /* SIDEBAR namespaced (ss-) - aplicado junto com o layout atual; não sobrescreve .sidebar */
+    .ss-sidebar{ width:90px; height:100vh; background:#ffffff; position:fixed; left:0; top:0; box-shadow:2px 0 5px rgba(0,0,0,0.1); display:flex; flex-direction:column; align-items:center; padding-top:20px; z-index:1000; }
+    .ss-logo{ width:60%; margin-bottom:20px; }
+    .ss-nav-icon{ color:#333; font-size:20px; margin:18px 0; cursor:pointer; }
+    .ss-active{ background:#e0e0e0; color:#333; border-radius:8px; padding:8px; }
+    .ss-section{ display:none; } #ss-inicio-section{ display:block; margin-left:250px; padding:20px; }
+
     @keyframes fadeIn {
       from { transform: scale(0.9); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
@@ -382,6 +389,18 @@
     </div>
   </div>
 
+  <div class="ss-wrapper">
+    <div class="ss-sidebar">
+      <img src="../assets/img/erased_logo.png" alt="StartSimple" class="ss-logo" />
+      <i class="fa-solid fa-house ss-nav-icon ss-active" title="Início"></i>
+      <i class="fa-solid fa-user ss-nav-icon" title="Perfil"></i>
+      <i class="fa-solid fa-heart ss-nav-icon" title="Favoritos"></i>
+      <i class="fa-solid fa-bell ss-nav-icon" title="Notificações"></i>
+      <i class="fa-solid fa-gear ss-nav-icon" title="Configurações"></i>
+    </div>
+    <div id="ss-inicio-section" class="ss-section"></div>
+  </div>
+
   <script>
     // Variáveis
     const sidebar = document.querySelector('.sidebar');
@@ -444,6 +463,18 @@
     fecharCard.addEventListener('click', () => {
       overlay.classList.remove('active');
     });
+  </script>
+
+  <script>
+    // preserve existing sidebar behavior, mais adiciono controle namespaced para evitar colisões
+    (function(){
+      const wrapper = document.querySelector('.ss-wrapper');
+      if (!wrapper) return;
+      const icons = wrapper.querySelectorAll('.ss-nav-icon');
+      function normalizeTitle(t){ if(!t) return ''; return t.trim().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(); }
+      function hideAll(){ const ids = ['inicio-section','perfil-section','favoritos-section','favorites-section','notificacoes-section','configuracoes-section']; ids.forEach(id=>{ const el=document.getElementById(id); if(el) el.style.display='none'; }); }
+      icons.forEach(icon=>icon.addEventListener('click',()=>{ icons.forEach(i=>i.classList.remove('ss-active')); icon.classList.add('ss-active'); hideAll(); const key=normalizeTitle(icon.getAttribute('title')); if(key==='perfil'){ const s=document.getElementById('perfil-section'); if(s) s.style.display='block'; } else if(key==='favoritos'){ const s=document.getElementById('favoritos-section')||document.getElementById('favorites-section'); if(s) s.style.display='block'; } else if(key==='notificacoes'){ const s=document.getElementById('notificacoes-section'); if(s) s.style.display='block'; } else if(key==='configuracoes'){ const s=document.getElementById('configuracoes-section'); if(s) s.style.display='block'; } else { const s=document.getElementById('inicio-section'); if(s) s.style.display='block'; } }));
+    })();
   </script>
 </body>
 </html>
