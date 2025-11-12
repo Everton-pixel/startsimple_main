@@ -83,14 +83,15 @@
 
     .card {
       background: rgba(255, 255, 255, 0.15); 
-            background: linear-gradient(to right bottom, gray, lightblue, gray);
+            background-color: white;
             backdrop-filter: blur(15px); 
             border: 1px solid rgba(255, 255, 255, 0.25); 
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             border-radius: 5rem; 
-            align-items: center;
-            width: 700px;
-            height: 300px;
+            align-items: end;
+            justify-content: center;
+            width: 1000px;
+            height: 700px;
             padding: 17px;
       display: flex;
     }
@@ -368,17 +369,32 @@
       font-weight: bold;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
+    #titulo {
+      width: 100%;
+      text-align: center;
+      color: #222;
+      margin: 18px 0;
+      font-size: 2.5em;
+    }
+    #Compartilhe {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
   </style>
 </head>
 <body>
   <div class="main-content" id="conteudo">
       <!-- Seção Início -->
       <div id="inicio-section">
-        <h1>Investimentos em Culinária</h1>
+        <h1 id="titulo">Comunidade</h1>
         <div class="card">
-            <button id="Anotar_ideias">Anotar suas ideias</button>
-            <a id="comunity" href="Comunidade_tec">Comunidade</a>
-          <button id="dicas">Dicas para começar</button>
+            <i class="fa-solid fa-user nav-icon" title="Perfil_user"></i>
+            <input type=" text" id="Compartilhe" placeholder="Compartilhe seus desenhos, ideias e inspirações com a comunidade!">
       </div>
     </div>
   <!-- SIDEBAR -->
@@ -568,3 +584,5 @@
   </script>
 </body>
 </html>
+
+
