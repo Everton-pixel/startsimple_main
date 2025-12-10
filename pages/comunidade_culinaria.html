@@ -565,6 +565,62 @@
     const overlay = document.getElementById('overlay');
     if (Anotar_ideias) Anotar_ideias.addEventListener('click', () => overlay.classList.add('active'));
     if (fecharCard) fecharCard.addEventListener('click', () => overlay.classList.remove('active'));
+
+    (function(){
+      async function sendIdea(categoria){
+        const input = document.querySelector('#overlay input');
+        if (!input) return;
+        const titulo = input.value.trim();
+        if (!titulo) return;
+        try {
+          const resp = await fetch('/api/ideias', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ titulo, categoria })
+          });
+          const data = await resp.json();
+          if (resp.ok) {
+            alert('Ideia enviada. ID: ' + data.id);
+            input.value = '';
+          } else {
+            alert('Erro: ' + (data.error || resp.statusText));
+          }
+        } catch (err) {
+          alert('Erro ao enviar ideia: ' + err.message);
+        }
+      }
+
+      const fecharCardBtn = document.getElementById('fecharCard');
+      if (fecharCardBtn) {
+        fecharCardBtn.addEventListener('click', async () => {
+          const input = document.querySelector('#overlay input');
+          if (input && input.value.trim()) await sendIdea('Culinária');
+          const overlay = document.getElementById('overlay');
+          if (overlay) overlay.classList.remove('active');
+        });
+      }
+    })();
   </script>
+  <script>
+/* filepath: c:\startsimple_main\pages\comunidade_culinaria.html - sidebar init */
+(function(){
+  if (window.ssSidebarInit) return; window.ssSidebarInit = true;
+  function normalizeTitle(t){ if(!t) return ''; return t.trim().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(); }
+  const icons = document.querySelectorAll('.nav-icon');
+  if (!icons || !icons.length) return;
+  document.addEventListener('click', function(e){
+    const icon = e.target.closest('.nav-icon'); if(!icon) return;
+    icons.forEach(i=>i.classList.remove('active')); icon.classList.add('active');
+    ['inicio-section','perfil-section','favoritos-section','favorites-section','notificacoes-section','configuracoes-section'].forEach(id=>{ const el=document.getElementById(id); if(el) el.style.display='none'; });
+    ['perfilcard','favcard','notifcard','configcard'].forEach(id=>{ const c=document.getElementById(id); if(c) c.style.display='none'; });
+    const key = normalizeTitle(icon.getAttribute('title'));
+    if (key === 'perfil') { const s=document.getElementById('perfil-section'); if(s) s.style.display='block'; const c=document.getElementById('perfilcard'); if(c) c.style.display='block'; }
+    else if (key === 'favoritos') { const s=document.getElementById('favorites-section')||document.getElementById('favoritos-section'); if(s) s.style.display='block'; const c=document.getElementById('favcard'); if(c) c.style.display='block'; }
+    else if (key === 'notificacoes') { const s=document.getElementById('notificacoes-section'); if(s) s.style.display='block'; const c=document.getElementById('notifcard'); if(c) c.style.display='block'; }
+    else if (key === 'configuracoes') { const s=document.getElementById('configuracoes-section'); if(s) s.style.display='block'; const c=document.getElementById('configcard'); if(c) c.style.display='block'; }
+    else { const s=document.getElementById('inicio-section'); if(s) s.style.display='block'; }
+  });
+})();
+</script>
 </body>
 </html>
