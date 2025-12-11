@@ -14,9 +14,7 @@
             background-attachment: fixed;
             color: #E2E8F0;
         }
-        h2 {
-            font-family: 'Montserrat', sans-serif;
-        }
+        h2 { font-family: 'Montserrat', sans-serif; }
         .glass-card {
             background: rgba(255, 255, 255, 0.15); 
             backdrop-filter: blur(15px);
@@ -25,11 +23,7 @@
             border-radius: 1.5rem;
         }
         .logo-shadow {
-            filter: 
-                drop-shadow(1px 1px 0 rgba(255, 255, 255, 0.8))
-                drop-shadow(-1px 1px 0 rgba(255, 255, 255, 0.8))
-                drop-shadow(1px -1px 0 rgba(255, 255, 255, 0.8))
-                drop-shadow(-1px -1px 0 rgba(255, 255, 255, 0.8));
+            filter: drop-shadow(1px 1px 0 rgba(255, 255, 255, 0.8));
         }
     </style>
 </head>
@@ -39,7 +33,7 @@
         <div class="w-full flex items-center justify-start">
             <a href="index.html" class="flex items-center text-white/90 hover:text-white transition duration-300">
                 <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i>
-                <img src="..\assets\img\erased_logo.png" alt="StartSimples Logo" class="h-22 sm:h-24 w-auto logo-shadow">
+                <img src="../assets/img/erased_logo.png" alt="StartSimples Logo" class="h-12 w-auto logo-shadow">
             </a>
         </div>
     </header>
@@ -50,25 +44,25 @@
                 Entre na sua conta
             </h2>
 
-            <form class="space-y-6">
+            <form class="space-y-6" id="loginForm">
                 <div>
                     <label for="email" class="sr-only">Email</label>
                     <input type="email" id="email" placeholder="Seu email" required 
-                           class="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-lg placeholder-white/80 text-white focus:ring-2 focus:ring-white focus:border-white/50 transition duration-300 shadow-inner"
-                           style="outline: none;">
+                           class="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-lg placeholder-white/80 text-white focus:ring-2 focus:ring-white focus:border-white/50 transition duration-300 shadow-inner outline-none">
                 </div>
                 
                 <div class="relative">
                     <label for="password" class="sr-only">Senha</label>
                     <input type="password" id="password" placeholder="Senha" required
-                           class="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-lg placeholder-white/80 text-white focus:ring-2 focus:ring-white focus:border-white/50 transition duration-300 shadow-inner pr-12"
-                           style="outline: none;">
+                           class="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-lg placeholder-white/80 text-white focus:ring-2 focus:ring-white focus:border-white/50 transition duration-300 shadow-inner pr-12 outline-none">
                     
-                    
+                    <button type="button" id="togglePassword" 
+                            class="absolute inset-y-0 right-0 flex items-center pr-3 text-white/70 hover:text-white transition duration-200">
+                        <i data-lucide="eye" class="w-5 h-5"></i>
+                    </button>
                 </div>
                 
-                <button type="submit" 
-                        onclick="window.location.href='tela-pos-login.html'"
+                <button type="submit" id="loginButton"
                         class="w-full inline-flex items-center justify-center bg-white text-blue-800 font-extrabold py-3 rounded-lg hover:bg-gray-100 transition duration-300 shadow-xl text-lg mt-4">
                     Acessar Plataforma
                 </button>
@@ -84,32 +78,31 @@
     </main>
 
     <script>
+        // Inicializa ícones
         lucide.createIcons();
         
-        document.addEventListener('DOMContentLoaded', function() {
-            const togglePassword = document.getElementById('togglePassword');
-            const passwordInput = document.getElementById('password');
-            const eyeIcon = document.getElementById('eyeIcon');
-            
-            togglePassword.addEventListener('click', function() {
-                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordInput.setAttribute('type', type);
-
-                if (type === 'text') {
-                  togglePassword.innerHTML = '<i data-lucide="eye-off" class="w-5 h-5"></i>';
-                } else {
-                 togglePassword.innerHTML = '<i data-lucide="eye" class="w-5 h-5"></i>';
-                }
-                lucide.createIcons();
-            });
-        });
+        // 1. Lógica do Olho Mágico (Mostrar Senha)
+        const togglePassword = document.getElementById('togglePassword');
         const passwordInput = document.getElementById('password');
-        const emailInput = document.getElementById('email'); 
+
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            // Troca o ícone
+            this.innerHTML = type === 'password' 
+                ? '<i data-lucide="eye" class="w-5 h-5"></i>' 
+                : '<i data-lucide="eye-off" class="w-5 h-5"></i>';
+            lucide.createIcons();
+        });
+
+        // 2. Lógica de Login (Conectar com API)
         const loginButton = document.getElementById('loginButton');
+        const emailInput = document.getElementById('email'); 
         const apiUrl = 'http://localhost:3000'; // URL do seu servidor backend
 
         loginButton.addEventListener('click', async (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Impede recarregar a página
     
             const email = emailInput.value.trim();
             const senha = passwordInput.value.trim();
@@ -118,30 +111,37 @@
                 alert('Por favor, preencha todos os campos.');
                 return;
             }
+
+            // Feedback visual
+            const textoOriginal = loginButton.innerText;
+            loginButton.innerText = "Entrando...";
+            loginButton.disabled = true;
     
             try {
                 const response = await fetch(`${apiUrl}/login`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, senha })
                 });
     
                 const data = await response.json();
     
                 if (response.ok) {
-                    // Login bem-sucedido
+                    // SUCESSO: Salva dados básicos se quiser e redireciona
+                    // localStorage.setItem('usuario', JSON.stringify(data.user)); 
                     window.location.href = 'tela-pos-login.html';
                 } else {
-                    // Erro no login
-                    alert(data.message || 'Erro ao fazer login. Tente novamente.');
+                    // ERRO (Senha errada ou usuário não existe)
+                    alert(data.message || 'Erro ao fazer login.');
                 }
             } catch (error) {
-                console.error('Erro ao conectar com o servidor:', error);
-                alert('Erro ao conectar com o servidor. Tente novamente mais tarde.');
+                console.error('Erro ao conectar:', error);
+                alert('Erro ao conectar com o servidor. Verifique se "node server.js" está rodando.');
+            } finally {
+                loginButton.innerText = textoOriginal;
+                loginButton.disabled = false;
             }
-
+        });
     </script>
 </body>
 </html>

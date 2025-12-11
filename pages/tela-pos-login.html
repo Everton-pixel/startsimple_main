@@ -3,474 +3,317 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StartSimple</title>
-
-  <!-- Font Awesome para ícones -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
+  <title>StartSimple - Comunidade</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-    body, html {
-             font-family: 'Inter', sans-serif;
-            background-attachment: fixed; 
-            color: #E2E8F0; 
-            line-height: 1.6;    /* garante altura mínima */
-    }
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    /* SIDEBAR NOVA */
-    .sidebar {
-      width: 90px;
-      height: 100vh;
-      background: rgba(255, 255, 255, 0.15)
-      
-      ; 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 20px;
-      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
-      position: fixed;
-      left: 0;
-      top: 0;
-    }
-
-    .logo {
-      width: 60%;
-      margin-bottom: 40px;
-    }
-
-    .nav-icon {
-      color: blue;
-      font-size: 26px;
-      margin: 22px 0;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .nav-icon:hover {
-      color: #7c2ae8;
-      transform: scale(1.2);
-    }
-
-    .active {
-      color: #fff;
-      background: blue;
-      border-radius: 15px;
-      padding: 10px;
-    }
-
-    /* CONTEÚDO */
-    .main-content {
-      flex: 1;
-      margin-left: 100px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;     /* centraliza horizontalmente */
-      justify-content: center; /* centraliza verticalmente */
-      min-height: 100vh;
-      width: calc(100% - 100px); /* considera a largura menos a sidebar */
-    }
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #334155; margin: 0; overflow-x: hidden; }
+    .brand-gradient { background: linear-gradient(to right bottom, #a3557c, #0e3bc2); }
     
-
-    /* SEU ESTILO ANTIGO (mantido) */
-    .card {
-            background: rgba(255, 255, 255, 0.15); 
-            background: linear-gradient(to right bottom, gray, lightblue, gray);
-            backdrop-filter: blur(15px); 
-            border: 1px solid rgba(255, 255, 255, 0.25); 
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            border-radius: 5rem; 
-            align-items: center;
-            width: 700px;
-            height: 300px;
-            padding: 17px;
-
-    }
-
-    a {
-      border: none;
-      background-color: white;
-      color: black !important;
-      padding: 12px 28px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin:45px 5px 5px;
-      cursor: pointer;
-      border-radius: 12px;
-      box-shadow: 0 4px #999;
-      text-decoration: none;
-      font-size: 1.5em;
-      font-weight: bold;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
-    :hover{
-      background-color: #F3F4F6;
-    }
-
-    h1 {
-      text-align: center;
-      color: #222;
-      -webkit-text-stroke: 0.6px rgba(0,0,0,0.12);
-      margin: 18px 0;
-      font-size: 2em !important;
-      text-shadow: 2px 2px 4px rgba(2, 2, 2, 0.5);    
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      
-    }
-
-    /* Estilos para as seções */
-   
-
-    .fechar-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 18px;
-      padding: 5px;
-    }
-
-    /* Card de Perfil */
-    #perfilcard {
-      position: fixed;
-      display: none;
-      z-index: 1000;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      top: 80px;
-      left: 100px;
-      width: 280px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 20px;
-      color: white;
-    }
-
-    #perfilcard .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      border-bottom: 2px solid rgba(255,255,255,0.2);
-      padding-bottom: 15px;
-    }
-
-    #perfilcard .fechar-btn {
-      color: rgba(255,255,255,0.8);
-    }
-
-    #perfilcard .fechar-btn:hover {
-      color: white;
-    }
-
-    #perfilcard .card-content p {
-      margin: 12px 0;
-      font-size: 0.95em;
-      opacity: 0.9;
-    }
-
-    /* Card de Favoritos */
-    #favcard {
-      position: fixed;
-      display: none;
-      z-index: 1000;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      top: 80px;
-      left: 100px;
-      width: 280px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 20px;
-      color: white;
-    }
-   
-    #favcard .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-      border-bottom: 2px solid rgba(0,0,0,0.1);
-      padding-bottom: 12px;
-    }
-
-    #favcard .fechar-btn {
-      color: #666;
-    }
-
-    #favcard .fechar-btn:hover {
-      color: #333;
-    }
-
-    #favcard .card-content p {
-      margin: 10px 0;
-      color: #444;
-    }
-
-    /* Card de Notificações */
-    #notifcard {
-      position: fixed;
-      display: none;
-      z-index: 1000;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      top: 80px;
-      left: 100px;
-      width: 280px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 20px;
-      color: white;;
-    }
-
-    #notifcard .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-      border-bottom: 2px solid rgba(255,255,255,0.3);
-      padding-bottom: 15px;
-    }
-
-    #notifcard .fechar-btn {
-      color: #2c5364;
-    }
-
-    #notifcard .fechar-btn:hover {
-      color: #203a43;
-    }
-
-    #notifcard .card-content p {
-      margin: 12px 0;
-      color: #2c5364;
-      font-weight: 500;
-      }
-   
-
+    /* SIDEBAR */
+    .sidebar { width: 80px; height: 100vh; position: fixed; left: 0; top: 0; display: flex; flex-direction: column; align-items: center; padding-top: 20px; z-index: 50; box-shadow: 4px 0 15px rgba(0,0,0,0.05); }
+    .nav-item { width: 45px; height: 45px; display: flex; justify-content: center; align-items: center; margin: 15px 0; border-radius: 12px; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: all 0.3s ease; font-size: 1.2rem; }
+    .nav-item:hover { background: rgba(255, 255, 255, 0.2); color: white; transform: translateX(3px); }
+    .nav-item.active { background: white; color: #0e3bc2; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     
+    /* MAIN */
+    .main-content { margin-left: 80px; padding: 30px 50px; min-height: 100vh; }
+    
+    /* FILTERS */
+    .filter-navbar { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 10px; margin-top: 20px; margin-bottom: 30px; scrollbar-width: none; }
+    .filter-btn { padding: 10px 24px; border-radius: 50px; font-size: 0.95rem; font-weight: 500; cursor: pointer; border: 1px solid #e2e8f0; background: white; color: #64748b; transition: all 0.3s ease; white-space: nowrap; }
+    .filter-btn:hover { border-color: #a3557c; color: #a3557c; }
+    .filter-btn.active { background: linear-gradient(to right bottom, #a3557c, #0e3bc2); color: white; border: none; box-shadow: 0 4px 12px rgba(14, 59, 194, 0.3); transform: translateY(-1px); }
 
-
-    /* Card de Configurações */
-    #configcard {
-      position: fixed;
-      display: none;
-      z-index: 1000;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      top: 80px;
-      left: 100px;
-      width: 280px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 20px;
-      color: white;
-    }
-
-    #configcard .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      border-bottom: 2px solid rgba(0,0,0,0.1);
-      padding-bottom: 15px;
-    }
-
-    #configcard .fechar-btn {
-      color: #555;
-    }
-
-    #configcard .fechar-btn:hover {
-      color: #222;
-    }
-
-    #configcard .card-content p {
-      margin: 14px 0;
-      color: #444;
-      font-size: 0.95em;
-    }
-
-    #inicio-section {
-      display: block;
-      
-    }
- 
-
+    /* CARDS */
+    .content-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+    .post-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.3s ease; border: 1px solid #f1f5f9; display: flex; flex-direction: column; }
+    /* .post-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); } */ /* Removido hover agressivo para facilitar clique nos botoes */
+    
+    .card-img { height: 160px; background-color: #cbd5e1; position: relative; background-size: cover; background-position: center; }
+    .card-tag { position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.9); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; color: #0e3bc2; text-transform: uppercase; }
+    .card-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+    .card-title { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 8px; }
+    .card-desc { font-size: 0.9rem; color: #64748b; line-height: 1.5; margin-bottom: 20px; }
+    .card-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 15px; }
+    
+    /* AREA DE COMENTARIOS */
+    .comments-section { display: none; background: #f8fafc; padding: 15px; border-top: 1px solid #e2e8f0; }
+    .comment-item { font-size: 0.85rem; margin-bottom: 10px; padding: 8px; background: white; border-radius: 8px; border: 1px solid #e2e8f0; }
+    
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 100; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+    .modal-content { background: white; width: 90%; max-width: 500px; border-radius: 20px; padding: 30px; position: relative; animation: slideUp 0.3s ease; }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
   </style>
 </head>
 <body>
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-  <img src="../assets/img/erased_logo.png" alt="StartSimple" class="logo" />
-    <i class="fa-solid fa-house nav-icon active" title="Início"></i>
-    <i class="fa-solid fa-user nav-icon" title="Perfil"></i>
-    <i class="fa-solid fa-heart nav-icon" title="Favoritos"></i>
-    <i class="fa-solid fa-bell nav-icon" title="Notificações"></i>
-    <i class="fa-solid fa-gear nav-icon" title="Configurações"></i>
-  </div>
+  <aside class="sidebar brand-gradient">
+    <div style="margin-bottom: 40px; color: white; font-size: 1.2rem; font-weight: bold;"><i class="fa-solid fa-rocket"></i></div>
+    <div class="nav-item active" onclick="window.location.href='tela-pos-login.html'"><i class="fa-solid fa-house"></i></div>
+    <div class="nav-item"onclick="window.location.href='perfil.html'" ><i class="fa-solid fa-user"></i></div>
+    <div class="nav-item"><i class="fa-solid fa-heart"></i></div>
+    <div class="nav-item"><i class="fa-solid fa-bell"></i></div>
+  </aside>
 
-  <!-- CONTEÚDO -->
-  <div class="main-content" id="conteudo">
-    <!-- Seção Início -->
-    <div id="inicio-section">
-      <h1>Em qual ramo você deseja seguir?</h1>
-      <div class="card">
-          <a href="comunidade_culinaria.html">Culinária</a>
-          <a href="Entretenimento.html">Entretenimento</a>
-          <a href="Comunidade_tec.html">Tecnologia</a><br>
-          <a href="Comercio.html">Comércio</a>
-          <a href="Comunidade_arte.html">Arte</a>
-          <a href="Servicos.html">Serviços</a>
-          <a href="Educacao.html">Educação</a>
-      </div>
+  <main class="main-content">
+    <div class="flex justify-between items-center mb-2">
+        <div>
+            <h1 class="text-3xl font-bold text-slate-800">Comunidade</h1>
+            <p class="text-slate-500 mt-1">Explore projetos, vagas e discussões.</p>
+        </div>
+        <button onclick="abrirModal()" class="bg-white border border-slate-200 text-slate-700 px-4 py-2 rounded-lg hover:bg-slate-50 shadow-sm transition flex items-center gap-2">
+            <i class="fa-solid fa-plus text-purple-600"></i> Novo Post
+        </button>
     </div>
 
-    <!-- Seção Perfil -->
-    <div id="perfil-section">
-      <div class="card" id="perfilcard">
-        <div class="perfil-header">
-          <h2>Perfil do Usuário</h2>
-          <button id="fecharPerfil" class="fechar-btn">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <div class="perfil-content">
-          <p>Nome: Usuário Exemplo</p>
-          <p>Email: usuario@exemplo.com</p>
-          <p>Membro desde: 2023</p>
-        </div>
-      </div>
+    <nav class="filter-navbar">
+      <button class="filter-btn active" onclick="filtrar('todos', this)">Todos</button>
+      <button class="filter-btn" onclick="filtrar('Tecnologia', this)">Tecnologia</button>
+      <button class="filter-btn" onclick="filtrar('Culinária', this)">Culinária</button>
+      <button class="filter-btn" onclick="filtrar('Entretenimento', this)">Entretenimento</button>
+      <button class="filter-btn" onclick="filtrar('Comércio', this)">Comércio</button>
+      <button class="filter-btn" onclick="filtrar('Arte', this)">Arte</button>
+      <button class="filter-btn" onclick="filtrar('Serviços', this)">Serviços</button>
+    </nav>
+
+    <div class="content-grid" id="feedGrid">
+        <p class="text-slate-400 col-span-full text-center py-10">Carregando posts...</p>
     </div>
+  </main>
 
-    <!-- Seção Favoritos -->
-    <div id="favorites-section">
-      <div class="card" id="favcard">
-        <div class="favorites-header">
-          <button id="fehcar" class="fechar-btn">
-            <i class="fas fa-times"></i>
-          </button>
+  <div class="modal-overlay" id="modalPost">
+    <div class="modal-content">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-slate-800">Criar Novo Post</h2>
+            <button onclick="fecharModal()" class="text-slate-400 hover:text-red-500"><i class="fa-solid fa-times text-xl"></i></button>
         </div>
-        <div class="favorites-content">
-          <p>Item Favorito 1</p>
-          <p>Item Favorito 2</p>
-          <p>Item Favorito 3</p>
-        </div>
-      </div>
-    </div> <!-- FECHAMENTO ADICIONADO: fecha #favorites-section corretamente -->
 
-    <!-- Seção Notificações -->
-    <div id="notificacoes-section">
-      <div class="section-card" id="notifcard">
-        <div class="card-header">
-          <h2>Notificações</h2>
-          <button id="fecharNotif" class="fechar-btn">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <div class="card-content">
-          <p>Nenhuma notificação nova</p>
-          <p>Todas notificações estão em dia</p>
-        </div>
-      </div>
-    </div>
+        <form id="formPost" onsubmit="criarPost(event)">
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-slate-700 mb-1">Título</label>
+                <input type="text" id="titulo" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 outline-none">
+            </div>
+            
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-slate-700 mb-1">Categoria</label>
+                <select id="categoria" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 outline-none">
+                    <option value="Tecnologia">Tecnologia</option>
+                    <option value="Culinária">Culinária</option>
+                    <option value="Entretenimento">Entretenimento</option>
+                    <option value="Comércio">Comércio</option>
+                    <option value="Arte">Arte</option>
+                    <option value="Serviços">Serviços</option>
+                    <option value="Educação">Educação</option>
+                </select>
+            </div>
 
-    <!-- Seção Configurações -->
-    <div id="configuracoes-section">
-      <div class="section-card" id="configcard">
-        <div class="card-header">
-          <h2>Configurações</h2>
-          <button id="fecharConfig" class="fechar-btn">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <div class="card-content">
-          <p>Tema: Claro</p>
-          <p>Idioma: Português</p>
-          <p>Notificações: Ativadas</p>
-        </div>
-      </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-slate-700 mb-1">URL da Imagem (Opcional)</label>
+                <input type="text" id="imagem" placeholder="https://..." class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 outline-none">
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-slate-700 mb-1">Descrição</label>
+                <textarea id="descricao" rows="3" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-3 rounded-lg text-white font-bold shadow-lg bg-gradient-to-r from-purple-600 to-blue-600 hover:opacity-90 transition">
+                Publicar
+            </button>
+        </form>
     </div>
   </div>
 
-<script>
-  const icons = document.querySelectorAll(".nav-icon");
-  const perfilCard = document.getElementById('perfilcard');
-  const fecharPerfil = document.getElementById('fecharPerfil');
-  const favCard = document.getElementById('favcard');
-  const fecharFav = document.getElementById('fehcar');
-  const notifCard = document.getElementById('notifcard');
-  const fecharNotif = document.getElementById('fecharNotif');
-  const configCard = document.getElementById('configcard');
-  const fecharConfig = document.getElementById('fecharConfig');
+  <script>
+    const apiUrl = 'http://localhost:3000';
 
-  // normaliza título: remove acentos, trim e passa para lowercase
-  function normalizeTitle(t) {
-    if (!t) return '';
-    return t.trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-  }
+    // 1. Abrir e Fechar Modal
+    function abrirModal() { document.getElementById('modalPost').style.display = 'flex'; }
+    function fecharModal() { document.getElementById('modalPost').style.display = 'none'; }
 
-  function hideAllSectionsAndCards() {
-    // esconder as seções
-    document.getElementById("perfil-section").style.display = "none";
-    document.getElementById("favorites-section").style.display = "none";
-    document.getElementById("notificacoes-section").style.display = "none";
-    document.getElementById("configuracoes-section").style.display = "none";
-    // esconder os cards
-    if (perfilCard) perfilCard.style.display = 'none';
-    if (favCard) favCard.style.display = 'none';
-    if (notifCard) notifCard.style.display = 'none';
-    if (configCard) configCard.style.display = 'none';
-  }
+    // 2. Carregar Posts ao iniciar
+    window.onload = carregarPosts;
 
-  icons.forEach(icon => {
-    icon.addEventListener("click", () => {
-      icons.forEach(i => i.classList.remove("active"));
-      icon.classList.add("active");
+    async function carregarPosts() {
+        try {
+            const res = await fetch(`${apiUrl}/posts`);
+            const posts = await res.json();
+            const grid = document.getElementById('feedGrid');
+            grid.innerHTML = ''; 
 
-      hideAllSectionsAndCards();
+            if(posts.length === 0) {
+                grid.innerHTML = '<p class="col-span-full text-center text-slate-400">Nenhum post encontrado. Seja o primeiro!</p>';
+                return;
+            }
 
-      const titulo = icon.getAttribute('title');
-      const key = normalizeTitle(titulo); // exemplo: "notificações" -> "notificacoes"
+            posts.forEach(post => {
+                const imagem = post.imagem_url || 'https://via.placeholder.com/400x200?text=StartSimple';
+                
+                const cardHTML = `
+                <article class="post-card" data-category="${post.categoria}">
+                    <div class="card-img" style="background-image: url('${imagem}')">
+                        <span class="card-tag">${post.categoria}</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">${post.titulo}</h3>
+                        <p class="card-desc">${post.descricao}</p>
+                        <div class="card-footer">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-500">
+                                    ${post.autor ? post.autor.charAt(0) : 'U'}
+                                </div>
+                                <span class="text-xs font-semibold text-slate-600">${post.autor || 'Usuário'}</span>
+                            </div>
+                            <div class="flex gap-4 text-sm text-slate-400">
+                                <button onclick="darLike(${post.id})" class="flex items-center gap-1 hover:text-red-500 transition">
+                                    <i class="fa-regular fa-heart"></i>
+                                    <span id="likes-${post.id}">${post.curtidas || 0}</span>
+                                </button>
+                                <button onclick="toggleComentarios(${post.id})" class="flex items-center gap-1 hover:text-blue-500 transition">
+                                    <i class="fa-regular fa-comment"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comments-section" id="comments-${post.id}">
+                        <div id="lista-comentarios-${post.id}" class="mb-3 max-h-40 overflow-y-auto">
+                            </div>
+                        <div class="flex gap-2">
+                            <input type="text" id="input-comentario-${post.id}" placeholder="Escreva um comentário..." 
+                                   class="w-full text-sm px-3 py-2 border rounded-lg outline-none focus:border-blue-500">
+                            <button onclick="enviarComentario(${post.id})" class="bg-blue-600 text-white px-3 py-1 rounded-lg text-xs font-bold hover:bg-blue-700">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+                `;
+                grid.innerHTML += cardHTML;
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
-      if (key === 'perfil') {
-        if (perfilCard) perfilCard.style.display = 'block';
-        document.getElementById('perfil-section').style.display = "block";
-      } else if (key === 'favoritos') {
-        if (favCard) favCard.style.display = 'block';
-        document.getElementById('favorites-section').style.display = "block";
-      } else if (key === 'notificacoes') {
-        if (notifCard) notifCard.style.display = 'block';
-        document.getElementById('notificacoes-section').style.display = "block";
-      } else if (key === 'configuracoes') {
-        if (configCard) configCard.style.display = 'block';
-        document.getElementById('configuracoes-section').style.display = "block";
-      } else {
-        document.getElementById('inicio-section').style.display = "block";
-      }
-    });
-  });
+    // 3. Criar Novo Post
+    async function criarPost(e) {
+        e.preventDefault();
+        const titulo = document.getElementById('titulo').value;
+        const categoria = document.getElementById('categoria').value;
+        const imagem = document.getElementById('imagem').value;
+        const descricao = document.getElementById('descricao').value;
+        const autor = "Usuário Teste"; // Você pode pegar do localStorage se tiver login salvo
 
-  // Fechar cards manualmente (usa style.display)
-  if (fecharPerfil) fecharPerfil.addEventListener('click', () => { if (perfilCard) perfilCard.style.display = 'none'; });
-  if (fecharFav) fecharFav.addEventListener('click', () => { if (favCard) favCard.style.display = 'none'; });
-  if (fecharNotif) fecharNotif.addEventListener('click', () => { if (notifCard) notifCard.style.display = 'none'; });
-  if (fecharConfig) fecharConfig.addEventListener('click', () => { if (configCard) configCard.style.display = 'none'; });
+        try {
+            const res = await fetch(`${apiUrl}/posts`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ titulo, descricao, categoria, imagem_url: imagem, autor })
+            });
 
-  // Fechar ao clicar fora (verifica display)
-  document.addEventListener('click', (event) => {
-    const isClickOnIcon = event.target.closest('.nav-icon');
+            if(res.ok) {
+                fecharModal();
+                document.getElementById('formPost').reset();
+                carregarPosts(); 
+            } else {
+                alert('Erro ao criar post.');
+            }
+        } catch (error) {
+            alert('Erro de conexão.');
+        }
+    }
 
-    [perfilCard, favCard, notifCard, configCard].forEach(card => {
-      if (!card) return;
-      const isVisible = card.style.display === 'block';
-      if (!card.contains(event.target) && !isClickOnIcon && isVisible) {
-        card.style.display = 'none';
-      }
-    });
-  });
-</script>
+    // 4. Lógica de Likes
+    async function darLike(postId) {
+        try {
+            const res = await fetch(`${apiUrl}/posts/${postId}/like`, { method: 'POST' });
+            if(res.ok) {
+                const data = await res.json();
+                // Atualiza o número na tela sem recarregar tudo
+                document.getElementById(`likes-${postId}`).innerText = data.curtidas;
+                
+                // Animação visualzinha
+                const btn = document.getElementById(`likes-${postId}`).parentElement;
+                btn.classList.add('text-red-500');
+                btn.querySelector('i').classList.replace('fa-regular', 'fa-solid');
+            }
+        } catch (error) { console.error(error); }
+    }
+
+    // 5. Lógica de Comentários
+    async function toggleComentarios(postId) {
+        const div = document.getElementById(`comments-${postId}`);
+        
+        // Se estiver fechado, abre e carrega os comentários
+        if (div.style.display === 'none' || div.style.display === '') {
+            div.style.display = 'block';
+            
+            // Carregar do servidor
+            const res = await fetch(`${apiUrl}/posts/${postId}/comments`);
+            const comentarios = await res.json();
+            
+            const listaDiv = document.getElementById(`lista-comentarios-${postId}`);
+            listaDiv.innerHTML = '';
+            
+            if(comentarios.length === 0) {
+                listaDiv.innerHTML = '<p class="text-xs text-slate-400 italic">Seja o primeiro a comentar!</p>';
+            } else {
+                comentarios.forEach(c => {
+                    listaDiv.innerHTML += `
+                        <div class="comment-item">
+                            <span class="font-bold text-xs text-blue-600 block">${c.autor || 'Anônimo'}</span>
+                            <span class="text-slate-700">${c.texto}</span>
+                        </div>
+                    `;
+                });
+            }
+
+        } else {
+            // Se estiver aberto, fecha
+            div.style.display = 'none';
+        }
+    }
+
+    async function enviarComentario(postId) {
+        const input = document.getElementById(`input-comentario-${postId}`);
+        const texto = input.value;
+        if(!texto) return;
+
+        try {
+            const res = await fetch(`${apiUrl}/posts/${postId}/comments`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ texto, autor: "Eu" }) // "Eu" temporário até integrarmos login real
+            });
+
+            if(res.ok) {
+                input.value = '';
+                // Recarrega a lista de comentários forçando o toggle
+                document.getElementById(`comments-${postId}`).style.display = 'none';
+                toggleComentarios(postId);
+            }
+        } catch (error) { console.error(error); }
+    }
+
+    // 6. Filtros
+    function filtrar(categoria, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cards = document.querySelectorAll('.post-card');
+        cards.forEach(card => {
+            if(categoria === 'todos' || card.getAttribute('data-category') === categoria) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+  </script>
 
 </body>
 </html>

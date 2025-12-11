@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StartSimple - Meu Perfil</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reutilizando estilos globais para consistência */
+    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #334155; margin: 0; overflow-x: hidden; }
+    .brand-gradient { background: linear-gradient(to right bottom, #a3557c, #0e3bc2); }
+    .text-gradient { background: linear-gradient(to right, #a3557c, #0e3bc2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    
+    /* SIDEBAR */
+    .sidebar { width: 80px; height: 100vh; position: fixed; left: 0; top: 0; display: flex; flex-direction: column; align-items: center; padding-top: 20px; z-index: 50; box-shadow: 4px 0 15px rgba(0,0,0,0.05); }
+    .nav-item { width: 45px; height: 45px; display: flex; justify-content: center; align-items: center; margin: 15px 0; border-radius: 12px; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: all 0.3s ease; font-size: 1.2rem; }
+    .nav-item:hover { background: rgba(255, 255, 255, 0.2); color: white; transform: translateX(3px); }
+    .nav-item.active { background: white; color: #0e3bc2; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    
+    /* MAIN */
+    .main-content { margin-left: 80px; padding: 30px 50px; min-height: 100vh; }
+
+    /* CARDS DE POSTS (Mesmo estilo da comunidade) */
+    .content-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+    .post-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.3s ease; border: 1px solid #f1f5f9; display: flex; flex-direction: column; }
+    .card-img { height: 160px; background-color: #cbd5e1; position: relative; background-size: cover; background-position: center; }
+    .card-tag { position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.9); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; color: #0e3bc2; text-transform: uppercase; }
+    .card-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+    .card-title { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 8px; }
+    .card-desc { font-size: 0.9rem; color: #64748b; line-height: 1.5; margin-bottom: 20px; }
+    .card-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 15px; }
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar brand-gradient">
+    <div style="margin-bottom: 40px; color: white; font-size: 1.2rem; font-weight: bold;"><i class="fa-solid fa-rocket"></i></div>
+    <div class="nav-item" onclick="window.location.href='tela-pos-login.html'" title="Início"><i class="fa-solid fa-house"></i></div>
+    <div class="nav-item active" title="Perfil"><i class="fa-solid fa-user"></i></div>
+    <div class="nav-item"><i class="fa-solid fa-heart"></i></div>
+    <div class="nav-item"><i class="fa-solid fa-bell"></i></div>
+  </aside>
+
+  <main class="main-content">
+    
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 mb-10 flex flex-col md:flex-row items-center md:items-start gap-8 animate-fade-in">
+        <div class="flex-shrink-0 relative">
+            <div class="w-32 h-32 rounded-full brand-gradient p-1">
+                <div class="w-full h-full rounded-full bg-white p-1 overflow-hidden">
+                    <img src="https://i.pravatar.cc/300" alt="Avatar" class="w-full h-full object-cover rounded-full" id="fotoPerfil">
+                </div>
+            </div>
+            <button class="absolute bottom-0 right-0 bg-white text-blue-600 p-2 rounded-full shadow-md hover:bg-slate-50 border border-slate-200 transition">
+                <i class="fa-solid fa-camera"></i>
+            </button>
+        </div>
+
+        <div class="flex-grow text-center md:text-left space-y-4">
+            <div>
+                <h1 class="text-3xl font-bold text-slate-800" id="profileName">Carregando...</h1>
+                <p class="text-slate-500 font-medium" id="profileEmail">...</p>
+            </div>
+
+            <div class="flex flex-wrap gap-4 justify-center md:justify-start text-sm text-slate-600">
+                <div class="flex items-center gap-2 bg-slate-100 px-3 py-1.5 rounded-lg">
+                    <i class="fa-solid fa-layer-group text-blue-500"></i>
+                    Categoria: <b id="profileCategory" class="text-slate-800">...</b>
+                </div>
+                <div class="flex items-center gap-2 bg-slate-100 px-3 py-1.5 rounded-lg">
+                    <i class="fa-solid fa-calendar-days text-purple-500"></i>
+                    Membro desde: <b id="profileDate" class="text-slate-800">...</b>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-shrink-0 flex flex-row md:flex-col gap-3 mt-4 md:mt-0">
+            <button class="px-4 py-2 bg-white border border-slate-300 rounded-lg font-semibold text-slate-700 hover:bg-slate-50 transition shadow-sm flex items-center justify-center gap-2">
+                <i class="fa-solid fa-pen-to-square"></i> Editar Perfil
+            </button>
+            <button onclick="logout()" class="px-4 py-2 bg-red-50 border border-red-100 rounded-lg font-semibold text-red-600 hover:bg-red-100 transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-right-from-bracket"></i> Sair
+            </button>
+        </div>
+    </div>
+
+    <div>
+        <h2 class="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+            <i class="fa-solid fa-thumbtack brand-gradient-text text-lg"></i>
+            Minhas Publicações
+        </h2>
+        
+        <div class="content-grid" id="userPostsGrid">
+            <p class="text-slate-400 col-span-full py-10">Carregando publicações...</p>
+        </div>
+    </div>
+
+  </main>
+
+  <script>
+    const apiUrl = 'http://localhost:3000';
+
+    // SIMULAÇÃO DE LOGIN: 
+    // Em um app real, você pegaria esse ID do localStorage após o login.
+    // Para testar agora, vamos forçar o ID 1 (se você já criou um usuário, ele será o 1).
+    // Se não aparecer nada, crie um usuário novo no cadastro e mude este número.
+    const loggedUserId = 1; 
+
+    window.onload = async function() {
+        await carregarDadosPerfil();
+        await carregarPostsUsuario();
+    };
+
+    // 1. Carregar dados do topo da página
+    async function carregarDadosPerfil() {
+        try {
+            const res = await fetch(`${apiUrl}/users/${loggedUserId}`);
+            if (!res.ok) throw new Error("Erro ao buscar usuário");
+            
+            const user = await res.json();
+
+            // Formatar data de criação
+            const dataCriacao = new Date(user.criado_em).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long' });
+
+            // Preencher HTML
+            document.getElementById('profileName').innerText = user.nome;
+            document.getElementById('profileEmail').innerText = user.email;
+            document.getElementById('profileCategory').innerText = user.categoria || "Geral";
+            document.getElementById('profileDate').innerText = dataCriacao;
+            // Se tivesse foto no banco, atualizaria o src do #fotoPerfil aqui
+
+        } catch (error) {
+            console.error(error);
+            document.getElementById('profileName').innerText = "Erro ao carregar perfil";
+        }
+    }
+
+    // 2. Carregar e filtrar posts deste usuário
+    async function carregarPostsUsuario() {
+        try {
+            // Buscamos TODOS os posts (em um app real, o backend filtraria para ser mais eficiente)
+            const res = await fetch(`${apiUrl}/posts`);
+            const allPosts = await res.json();
+            
+            // Pega o nome do usuário que acabamos de carregar no perfil
+            const userName = document.getElementById('profileName').innerText;
+            
+            // Filtra no front-end (gambiarra para protótipo) posts onde o autor é igual ao nome do usuário
+            // NOTA: Isso é frágil. O ideal seria o post ter o user_id do autor.
+            // Para este exemplo funcionar, quando criar um post, use o mesmo nome do usuário logado.
+            const userPosts = allPosts.filter(post => post.autor === userName);
+
+            const grid = document.getElementById('userPostsGrid');
+            grid.innerHTML = ''; // Limpa loading
+
+            if(userPosts.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full flex flex-col items-center justify-center py-16 text-slate-400 bg-white rounded-2xl border border-slate-100 border-dashed">
+                        <i class="fa-regular fa-folder-open text-4xl mb-4 opacity-50"></i>
+                        <p class="font-medium">Você ainda não fez nenhuma publicação.</p>
+                        <button onclick="window.location.href='index.html'" class="mt-4 text-blue-600 hover:underline text-sm font-semibold">Criar meu primeiro post</button>
+                    </div>`;
+                return;
+            }
+
+            // Renderiza os cards (igual na home)
+            userPosts.forEach(post => {
+                const imagem = post.imagem_url || 'https://via.placeholder.com/400x200?text=StartSimple';
+                const cardHTML = `
+                <article class="post-card">
+                    <div class="card-img" style="background-image: url('${imagem}')">
+                        <span class="card-tag">${post.categoria}</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">${post.titulo}</h3>
+                        <p class="card-desc line-clamp-3">${post.descricao}</p>
+                        <div class="card-footer">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-semibold text-slate-400">Publicado por você</span>
+                            </div>
+                            <div class="flex gap-3 text-sm text-slate-400 items-center">
+                                <span class="flex items-center gap-1"><i class="fa-solid fa-heart text-red-400"></i> ${post.curtidas || 0}</span>
+                                <i class="fa-regular fa-comment"></i>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                `;
+                grid.innerHTML += cardHTML;
+            });
+
+        } catch (error) {
+            console.error(error);
+             document.getElementById('userPostsGrid').innerHTML = '<p class="text-red-500">Erro ao carregar posts.</p>';
+        }
+    }
+
+    // Função de Sair
+    function logout() {
+        if(confirm("Tem certeza que deseja sair?")) {
+            // Aqui você limparia o localStorage, ex: localStorage.removeItem('userId');
+            window.location.href = 'login.html';
+        }
+    }
+  </script>
+
+</body>
+</html>

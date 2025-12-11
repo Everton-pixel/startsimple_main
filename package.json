@@ -6,6 +6,8 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.1",
     "cors": "^2.8.5",
     "express": "^4.22.1",
     "sqlite3": "^5.1.7"

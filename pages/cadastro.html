@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StartSimples:    cadastro</title>
+    <title>StartSimples: Cadastro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -14,9 +14,7 @@
             background-attachment: fixed;
             color: #E2E8F0;
         }
-        h2 {
-            font-family: 'Montserrat', sans-serif;
-        }
+        h2 { font-family: 'Montserrat', sans-serif; }
         .glass-card {
             background: rgba(255, 255, 255, 0.15); 
             backdrop-filter: blur(15px);
@@ -25,14 +23,10 @@
             border-radius: 1.5rem;
         }
         .logo-shadow {
-            filter: 
-                drop-shadow(1px 1px 0 rgba(255, 255, 255, 0.8))
-                drop-shadow(-1px 1px 0 rgba(255, 255, 255, 0.8))
-                drop-shadow(1px -1px 0 rgba(255, 255, 255, 0.8))
-                drop-shadow(-1px -1px 0 rgba(255, 255, 255, 0.8));
+            filter: drop-shadow(1px 1px 0 rgba(255, 255, 255, 0.8));
         }
         input[type="date"]::-webkit-calendar-picker-indicator {
-            filter: invert(1); /* Inverte a cor do ícone de calendário para branco */
+            filter: invert(1);
             cursor: pointer;
         }
     </style>
@@ -43,7 +37,7 @@
         <div class="w-full flex items-center justify-start">
             <a href="login.html" class="flex items-center text-white/90 hover:text-white transition duration-300">
                 <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i>
-                <img src="..\assets\img\erased_logo.png" alt="StartSimples Logo" class="h-22 sm:h-24 w-auto logo-shadow">
+                <img src="../assets/img/erased_logo.png" alt="StartSimples Logo" class="h-12 w-auto logo-shadow">
             </a>
         </div>
     </header>
@@ -51,52 +45,46 @@
     <main class="flex-grow flex items-center justify-center p-6 sm:p-8">
         <div class="max-w-md w-full glass-card p-8 sm:p-10 text-center">
             <h2 class="text-3xl font-extrabold text-white mb-8 drop-shadow-md">
-                Entre na sua conta
+                Crie sua conta
             </h2>
 
-            <form class="space-y-6">
+            <form class="space-y-6" id="formCadastro">
                 <div>
-                    <label for="name" class="sr-only">Nome de Usuário</label>
+                    <label for="name" class="sr-only">Nome Completo</label>
                     <input type="text" id="name" placeholder="Nome Completo" required 
-                           class="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-lg placeholder-white/80 text-white focus:ring-2 focus:ring-white focus:border-white/50 transition duration-300 shadow-inner"
-                           style="outline: none;">
+                           class="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-lg placeholder-white/80 text-white focus:ring-2 focus:ring-white focus:border-white/50 transition duration-300 shadow-inner outline-none">
                 </div>
+
                 <div>
-                    <label for="date-born" class="sr-only">Nome de Usuário</label>
-                    <input type="date" id="data_nascimento" placeholder="Data de Nascimento" required
-                            class="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-lg placeholder-white/80 text-white focus:ring-2 focus:ring-white focus:border-white/50 transition duration-300 shadow-inner" 
-                            style="outline: none;">
-                    
+                    <label for="data_nascimento" class="sr-only">Data de Nascimento</label>
+                    <input type="date" id="data_nascimento" required
+                           class="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-lg placeholder-white/80 text-white focus:ring-2 focus:ring-white focus:border-white/50 transition duration-300 shadow-inner outline-none">
                 </div>
+
                 <div>
                     <label for="email" class="sr-only">Email</label>
                     <input type="email" id="email" placeholder="Seu email" required 
-                           class="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-lg placeholder-white/80 text-white focus:ring-2 focus:ring-white focus:border-white/50 transition duration-300 shadow-inner"
-                           style="outline: none;">
+                           class="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-lg placeholder-white/80 text-white focus:ring-2 focus:ring-white focus:border-white/50 transition duration-300 shadow-inner outline-none">
                 </div>
                 
                 <div class="relative">
                     <label for="password" class="sr-only">Senha</label>
                     <input type="password" id="password" placeholder="Senha" required
-                           class="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-lg placeholder-white/80 text-white focus:ring-2 focus:ring-white focus:border-white/50 transition duration-300 shadow-inner pr-12"
-                           style="outline: none;">
+                           class="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-lg placeholder-white/80 text-white focus:ring-2 focus:ring-white focus:border-white/50 transition duration-300 shadow-inner pr-12 outline-none">
                     
                     <button type="button" id="togglePassword" 
-                            class="absolute inset-y-0 right-0 flex items-center pr-3 text-white/70 hover:text-white transition duration-200"
-                            aria-label="Mostrar ou ocultar senha">
-                        <i data-lucide="eye" id="eyeIcon" class="w-5 h-5"></i>
+                            class="absolute inset-y-0 right-0 flex items-center pr-3 text-white/70 hover:text-white transition duration-200">
+                        <i data-lucide="eye" class="w-5 h-5"></i>
                     </button>
                 </div>
+
                 <div class="relative">
-                    <label for="password" class="sr-only">Senha</label>
-                    <input type="password" id="password" placeholder="Confirme sua senha" required
-                           class="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-lg placeholder-white/80 text-white focus:ring-2 focus:ring-white focus:border-white/50 transition duration-300 shadow-inner pr-12"
-                           style="outline: none;">
-                    
+                    <label for="confirmPassword" class="sr-only">Confirmar Senha</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirme sua senha" required
+                           class="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-lg placeholder-white/80 text-white focus:ring-2 focus:ring-white focus:border-white/50 transition duration-300 shadow-inner pr-12 outline-none">
                 </div>
                 
                 <button type="submit" id="registerButton"
-                        onclick="window.location.href='login.html'"
                         class="w-full inline-flex items-center justify-center bg-white text-blue-800 font-extrabold py-3 rounded-lg hover:bg-gray-100 transition duration-300 shadow-xl text-lg mt-4">
                     Acessar Plataforma
                 </button>
@@ -112,63 +100,81 @@
     </main>
 
     <script>
+        // Inicializa ícones
         lucide.createIcons();
         
-        document.addEventListener('DOMContentLoaded', function() {
-            const togglePassword = document.getElementById('togglePassword');
-            const passwordInput = document.getElementById('password');
-            const eyeIcon = document.getElementById('eyeIcon');
-            
-            togglePassword.addEventListener('click', function() {
-                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordInput.setAttribute('type', type);
-
-                if (type === 'text') {
-                  togglePassword.innerHTML = '<i data-lucide="eye-off" class="w-5 h-5"></i>';
-                } else {
-                 togglePassword.innerHTML = '<i data-lucide="eye" class="w-5 h-5"></i>';
-                }
-                lucide.createIcons();
-            });
-        });
+        // Lógica do Olho Mágico (Mostrar/Ocultar Senha)
+        const togglePassword = document.getElementById('togglePassword');
         const passwordInput = document.getElementById('password');
-       const emailInput = document.getElementById('email');
-       const nameInput = document.getElementById('name');
-       const dataNascimentoInput = document.getElementById('data_nascimento');
-       const registerButton = document.getElementById('registerButton');
-       const apiUrl = 'http://localhost:3000/users';
 
-         registerButton.addEventListener('click', async (e) => {
-              e.preventDefault();
-    
-              const nome = nameInput.value.trim();
-              const email = emailInput.value.trim();
-              const senha = passwordInput.value.trim();
-              const data_nascimento = dataNascimentoInput.value;
-    
-              if (!nome || !email || !senha || !data_nascimento) {
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            // Troca o ícone
+            this.innerHTML = type === 'password' 
+                ? '<i data-lucide="eye" class="w-5 h-5"></i>' 
+                : '<i data-lucide="eye-off" class="w-5 h-5"></i>';
+            lucide.createIcons(); // Recarrega o ícone novo
+        });
+
+        // Lógica de Cadastro
+        const registerButton = document.getElementById('registerButton');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const dataNascimentoInput = document.getElementById('data_nascimento');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        
+        // URL da API (Ajustada para a rota que criamos no server.js)
+        const apiUrl = 'http://localhost:3000/register';
+
+        registerButton.addEventListener('click', async (e) => {
+            e.preventDefault(); // Impede recarregar a página
+
+            const nome = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const senha = passwordInput.value.trim();
+            const confirmSenha = confirmPasswordInput.value.trim();
+            const data_nascimento = dataNascimentoInput.value;
+
+            // Validações básicas
+            if (!nome || !email || !senha || !confirmSenha || !data_nascimento) {
                 alert('Por favor, preencha todos os campos.');
                 return;
-              }
-    
-              try {
+            }
+
+            if (senha !== confirmSenha) {
+                alert('As senhas não coincidem!');
+                return;
+            }
+
+            // Feedback visual no botão
+            const textoOriginal = registerButton.innerText;
+            registerButton.innerText = "Cadastrando...";
+            registerButton.disabled = true;
+
+            try {
                 const response = await fetch(apiUrl, {
                      method: 'POST',
                      headers: { 'Content-Type': 'application/json' },
                      body: JSON.stringify({ nome, email, senha, data_nascimento })
                 });
-    
+
+                const data = await response.json();
+
                 if (response.ok) {
                      alert('Cadastro realizado com sucesso!');
-                     window.location.href = 'tela-pos-login.html';
+                     // Redireciona para o login após sucesso
+                     window.location.href = 'login.html';
                 } else {
-                     const errorData = await response.json();
-                     alert('Erro no cadastro: ' + (errorData.message || 'Tente novamente.'));
+                     alert('Erro: ' + (data.message || 'Tente novamente.'));
                 }
-              } catch (error) {
-                console.error('Erro ao cadastrar:', error);
-                alert('Erro ao conectar com o servidor. Tente novamente mais tarde.');
-              }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro ao conectar com o servidor. O servidor "node server.js" está rodando?');
+            } finally {
+                registerButton.innerText = textoOriginal;
+                registerButton.disabled = false;
+            }
          });
     </script>
 </body>
